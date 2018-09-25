@@ -1,0 +1,3503 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Práctica 2: Gestión de configuraciones y TDD con Play Framework - Prácticas MADS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#practica-2-gestion-de-configuraciones-y-tdd-con-play-framework" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Prácticas MADS" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Prácticas MADS
+              </span>
+              <span class="md-header-nav__topic">
+                Práctica 2: Gestión de configuraciones y TDD con Play Framework
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Prácticas MADS" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Prácticas MADS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Práctica 1
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Práctica 1
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../01-introduccion-play/intro-play-teoria/" title="Intro a Play para MADS" class="md-nav__link">
+      Intro a Play para MADS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../01-introduccion-play/comandos-git/" title="Comandos Git" class="md-nav__link">
+      Comandos Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../01-introduccion-play/introduccion-play/" title="Enunciado" class="md-nav__link">
+      Enunciado
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objetivos" title="1. Objetivos" class="md-nav__link">
+    1. Objetivos
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12-refactorizacion-de-la-obtencion-de-las-tareas-de-usuario" title="1.2. Refactorización de la obtención de las tareas de usuario" class="md-nav__link">
+    1.2. Refactorización de la obtención de las tareas de usuario
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="practica-2-gestion-de-configuraciones-y-tdd-con-play-framework">Práctica 2: Gestión de configuraciones y TDD con Play Framework<a class="headerlink" href="#practica-2-gestion-de-configuraciones-y-tdd-con-play-framework" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#1-objetivos">1. Objetivos</a></li>
+<li><a href="#12-refactorización-de-la-obtención-de-las-tareas-de-usuario">1.2. Refactorización de la obtención de las tareas de usuario</a></li>
+<li><a href="#2-tests-en-play-framework">2. Tests en Play Framework</a></li>
+<li><a href="#21-junit">2.1. JUnit</a></li>
+<li><a href="#22-tests-con-bases-de-datos-y-jpa">2.2. Tests con bases de datos y JPA</a></li>
+<li><a href="#23-nuevo-issue-con-tests">2.3. Nuevo <em>issue</em> con tests</a></li>
+<li><a href="#3-definición-de-configuraciones">3. Definición de configuraciones</a></li>
+<li><a href="#31-configuración-de-pruebas-de-integración">3.1. Configuración de pruebas de integración</a></li>
+<li><a href="#32-configuración-de-stage">3.2. Configuración de <em>stage</em></a></li>
+<li><a href="#4-nueva-historia-de-usuario-tableros-usando-tdd">4. Nueva historia de usuario: tableros (usando TDD)</a></li>
+<li><a href="#41-primer-issue-modelo-de-tablero-y-repositorio-básico">4.1. Primer <em>issue</em>: Modelo de tablero y repositorio básico</a></li>
+<li><a href="#42-tests-de-integración-antes-de-cerrar-el-issue-y-confirmar-el-pull-request">4.2. Tests de integración antes de cerrar el <em>issue</em> y confirmar el pull request</a></li>
+<li><a href="#43-resto-de-issues-parte-obligatoria">4.3. Resto de <em>issues</em> (parte
+    obligatoria)</a></li>
+<li><a href="#44-resto-de-issues-parte-opcional">4.4 Resto de <em>issues</em> (parte
+    opcional)</a></li>
+<li><a href="#45-finalización-de-la-versión-02">4.5. Finalización de la versión 0.2</a></li>
+<li><a href="#5-entrega-y-evaluación">5. Entrega y evaluación</a></li>
+</ul>
+<h2 id="1-objetivos">1. Objetivos<a class="headerlink" href="#1-objetivos" title="Permanent link">&para;</a></h2>
+<p>Esta práctica tiene dos objetivos principales: profundizar en las
+características de Play Framework relacionadas con las pruebas y
+utilizar la metodología TDD para añadir funcionalidades a nuestra
+aplicación.</p>
+<p>Al igual que la primera práctica, el desarrollo de esta práctica será
+individual. Tendrá una duración de 3 semanas, siendo la fecha límite
+de entrega el <strong>24 de octubre</strong>.</p>
+<p>Seguiremos trabajando en la aplicación <code>mads-todolist</code> que has estado
+desarrollando en la primera práctica.</p>
+<p>Continuaremos también trabajando con Git como sistema de control de
+versiones y GitHub como repositorio remoto. Intregraremos Git y TDD,
+haciendo que cada commit represente un incremento funcional en el
+desarrollo de la aplicación y contenga y pase sus propios tests.</p>
+<h3 id="12-refactorizacion-de-la-obtencion-de-las-tareas-de-usuario">1.2. Refactorización de la obtención de las tareas de usuario<a class="headerlink" href="#12-refactorizacion-de-la-obtencion-de-las-tareas-de-usuario" title="Permanent link">&para;</a></h3>
+<p>Antes de empezar la práctica, vamos a hacer una refactorización de un
+código mejorable introducido en la práctica 1. Se trata del código que
+recupera la lista de tareas de un usuario. </p>
+<p>La podéis encontrar en el [PR</p>
+<h1 id="34httpsgithubcomdomingogallardomads-todolist-guiapull34">34](https://github.com/domingogallardo/mads-todolist-guia/pull/34),<a class="headerlink" href="#34httpsgithubcomdomingogallardomads-todolist-guiapull34" title="Permanent link">&para;</a></h1>
+<p>echadle un vistazo a los cambios y hacedlo también en vuestro
+proyecto.</p>
+<p>Un usuario tiene una relación a-muchos con tareas. La refactorización
+consiste en hacer que al recuperar un usuario, JPA se traiga a memoria
+todas sus tareas y se queden guardadas en su atributo <code>tareas</code>. Para
+ello basta con poner en la entidad el atributo de JPA <code>fetch=FetchType.EAGER</code>.</p>
+<p>De esta forma evitamos el método <code>findAllTareas(usuarioId)</code> en el
+<code>TareaRepository</code>.</p>
+<p>En términos de <a href="https://stackoverflow.com/questions/1222392/can-someone-explain-domain-driven-design-ddd-in-plain-english-please/1222488#1222488">Domain-Driven
+Design</a>
+(un método de diseño muy interesante, que os recomiendo que aprendáis)
+estamos hablando de que <code>Usuario</code> y <code>Tareas</code> son <strong>entidades
+agregadas</strong>. Siempre tendremos en memoria en los objetos usuario su
+lista completa de tareas. </p>
+<p>Un libro muy recomendable para aprender sobre DDD es <a href="https://www.amazon.com/Patterns-Principles-Practices-Domain-Driven-Design/dp/1118714709">Patterns,
+Principles, and Practices of Domain-Driven
+Design</a>.</p>
+<h2 id="2-tests-en-play-framework">2. Tests en Play Framework<a class="headerlink" href="#2-tests-en-play-framework" title="Permanent link">&para;</a></h2>
+<p>Play Framework en Java utiliza <a href="http://junit.org">JUnit</a> como
+framework de testing. Los siguientes enlaces proporcionan información
+inicial sobre testing en Play Framework. No vamos a entrar en
+profundidad en todas las posibilidades (<em>mocking</em>, inyección de
+dependencias, etc.), sólo aprender lo necesario para definir algunos
+tests que sean útiles.</p>
+<p>A pesar que Play permite una gran flexibilidad a la hora de testear
+sus distintos elementos, sólo vamos a realizar tests de la <strong>capa de
+persistencia</strong> (clases Repository) y de la <strong>capa de servicios</strong>.</p>
+<ul>
+<li><a href="https://playframework.com/documentation/2.5.x/JavaTest">Testing your application</a></li>
+<li><a href="https://playframework.com/documentation/2.5.x/JavaTestingWithDatabases">Testing with databases</a></li>
+</ul>
+<p>Todos los tests se incluyen en el directorio <code>tests</code>. Podemos
+lanzar todos los tests desde la consola sbt</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todolist-2017] $ test
+</pre></div>
+</td></tr></table>
+
+<p>Y también podemos lanzar sólo los tests definidos en una clase:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todolist-2017] $ testOnly TareaServiceTest
+</pre></div>
+</td></tr></table>
+
+<p>O utilizar un comodín <code>*</code> para ejecutar sólo un conjunto de tests
+cuyas clases comiencen por una cadena:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todolist-2017] $ testOnly Tarea*
+</pre></div>
+</td></tr></table>
+
+<p>Y para lanzar sólo los tests que han fallado:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todoslist] $ testQuick
+</pre></div>
+</td></tr></table>
+
+<p>En Play es posible lanzar tests sobre ejecuciones de la aplicación con
+la sentencia <code>withApplication</code> (aunque no lo vamos a hacer). De esta
+forma no es necesario crear <em>mocks</em> ni <em>stubs</em> (aunque es posible
+hacerlo, si queremos mejorar el rendimiento de la ejecución de los
+tests o aislar el código a probar del resto de componentes y
+recursos).</p>
+<h3 id="21-junit">2.1. JUnit<a class="headerlink" href="#21-junit" title="Permanent link">&para;</a></h3>
+<p>Los tests se construyen usando JUnit:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSum</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">a</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testString</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Hello world&quot;</span><span class="o">;</span>
+    <span class="n">assertFalse</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">());</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="22-tests-con-bases-de-datos-y-jpa">2.2. Tests con bases de datos y JPA<a class="headerlink" href="#22-tests-con-bases-de-datos-y-jpa" title="Permanent link">&para;</a></h3>
+<h4 id="conexion-de-jpa-con-una-base-de-datos-en-memoria">Conexión de JPA con una base de datos en memoria<a class="headerlink" href="#conexion-de-jpa-con-una-base-de-datos-en-memoria" title="Permanent link">&para;</a></h4>
+<p>Lo habitual para realizar tests unitarios que necesiten trabajar con
+una base de datos es, o bien <em>mockear</em> la base de datos, o bien
+utilizar una base de datos en memoria (como H2) para que los tests
+puedan ejecutarse mucho más rápido sin necesidad de una base de datos
+real que trabaje sobre el disco duro.</p>
+<p>En la primera práctica hemos utilizado el segundo enfoque.</p>
+<p>El problema de los tests tal y como están escritos en la primera
+práctica es que la base de datos de prueba sobre la que trabajan no se
+puede definir en el fichero de configuración, sino que está definida
+en su código fuente.</p>
+<p>En concreto, la base de datos de memoria la creamos manualmente con la
+instrucción <code>Databases.inMemoryWith()</code> pasando un nombre JNDI con el
+que inicializarla (<code>DBTest</code>). Y después obtenemos el <code>JPAApi</code>
+obteniendo la configuración de JPA <code>memoryPersistenceUnit</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsuarioServiceTest</span> <span class="o">{</span>
+
+   <span class="kd">static</span> <span class="n">Database</span> <span class="n">db</span><span class="o">;</span>
+   <span class="kd">static</span> <span class="n">JPAApi</span> <span class="n">jpaApi</span><span class="o">;</span>
+
+   <span class="nd">@BeforeClass</span>
+   <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDatabase</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// Inicializamos la BD en memoria y su nombre JNDI</span>
+      <span class="n">db</span> <span class="o">=</span> <span class="n">Databases</span><span class="o">.</span><span class="na">inMemoryWith</span><span class="o">(</span><span class="s">&quot;jndiName&quot;</span><span class="o">,</span> <span class="s">&quot;DBTest&quot;</span><span class="o">);</span>
+      <span class="o">...</span>
+      <span class="c1">// Activamos en JPA la unidad de persistencia &quot;memoryPersistenceUnit&quot;</span>
+      <span class="c1">// declarada en META-INF/persistence.xml y obtenemos el objeto</span>
+      <span class="c1">// JPAApi</span>
+      <span class="n">jpaApi</span> <span class="o">=</span> <span class="n">JPA</span><span class="o">.</span><span class="na">createFor</span><span class="o">(</span><span class="s">&quot;memoryPersistenceUnit&quot;</span><span class="o">);</span>
+   <span class="o">}</span>
+
+   <span class="o">...</span>
+
+   <span class="nd">@Test</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">crearNuevoUsuarioCorrectoTest</span><span class="o">(){</span>
+      <span class="n">UsuarioRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPAUsuarioRepository</span><span class="o">(</span><span class="n">jpaApi</span><span class="o">);</span>
+      <span class="n">UsuarioService</span> <span class="n">usuarioService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UsuarioService</span><span class="o">(</span><span class="n">repository</span><span class="o">);</span>
+      <span class="n">Usuario</span> <span class="n">usuario</span> <span class="o">=</span> <span class="n">usuarioService</span><span class="o">.</span><span class="na">creaUsuario</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="s">&quot;123456&quot;</span><span class="o">);</span>
+      <span class="n">assertNotNull</span><span class="o">(</span><span class="n">usuario</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getLogin</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;123456&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+   <span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Recordemos que el perfil <code>memoryPersistenceUnit</code> está definido en el
+fichero <code>conf/META-INF/persistence.xml</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;memoryPersistenceUnit&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;provider&gt;</span>org.hibernate.jpa.HibernatePersistenceProvider<span class="nt">&lt;/provider&gt;</span>
+      <span class="nt">&lt;non-jta-data-source&gt;</span>DBTest<span class="nt">&lt;/non-jta-data-source&gt;</span>
+      <span class="nt">&lt;properties&gt;</span>
+         <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.dialect&quot;</span> <span class="na">value=</span><span class="s">&quot;org.hibernate.dialect.H2Dialect&quot;</span><span class="nt">/&gt;</span>
+         <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span> <span class="na">value=</span><span class="s">&quot;update&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/properties&gt;</span>
+   <span class="nt">&lt;/persistence-unit&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>La anotación <code>@BeforeClass</code> hace que el método estático <code>initDatabase()</code> se
+ejecute una única vez antes de todos los tests y guarde en las
+variables de clase la base de datos y el JPAApi obtenido. Estas dos
+variables se utilizarán más adelante.</p>
+<h4 id="inicializacion-de-la-base-de-datos-con-dbunit">Inicialización de la base de datos con DBUnit<a class="headerlink" href="#inicializacion-de-la-base-de-datos-con-dbunit" title="Permanent link">&para;</a></h4>
+<p>Para poder inicializar la base de datos con un conjunto de datos
+previos utilizamos la librería DBUnit.</p>
+<p>La dependencia de la librería se declara en el fichero <code>build.sbt</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>...
+
+libraryDependencies += javaJpa
+libraryDependencies += &quot;org.hibernate&quot; % &quot;hibernate-core&quot; % &quot;5.2.5.Final&quot;
+libraryDependencies +=  &quot;mysql&quot; % &quot;mysql-connector-java&quot; % &quot;5.1.18&quot;
+libraryDependencies += &quot;org.dbunit&quot; % &quot;dbunit&quot; % &quot;2.4.9&quot;
+
+...
+</pre></div>
+</td></tr></table>
+
+<p>Los datos iniciales de la base de datos se definen en un fichero de
+configuración XML. </p>
+<p><strong>Fichero <code>test/resources/usuarios_dataset.xml</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+ <span class="nt">&lt;dataset&gt;</span>
+    <span class="nt">&lt;Usuario</span> <span class="na">id=</span><span class="s">&quot;1000&quot;</span> <span class="na">login=</span><span class="s">&quot;juangutierrez&quot;</span> <span class="na">nombre=</span><span class="s">&quot;Juan&quot;</span> <span class="na">apellidos=</span><span class="s">&quot;Gutierrez&quot;</span>
+         <span class="na">password=</span><span class="s">&quot;123456789&quot;</span> <span class="na">eMail=</span><span class="s">&quot;juan.gutierrez@gmail.com&quot;</span> <span class="na">fechaNacimiento=</span><span class="s">&quot;1993-12-10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;Tarea</span> <span class="na">id=</span><span class="s">&quot;1000&quot;</span> <span class="na">titulo=</span><span class="s">&quot;Renovar DNI&quot;</span> <span class="na">usuarioId=</span><span class="s">&quot;1000&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;Tarea</span> <span class="na">id=</span><span class="s">&quot;1001&quot;</span> <span class="na">titulo=</span><span class="s">&quot;Práctica 1 MADS&quot;</span> <span class="na">usuarioId=</span><span class="s">&quot;1000&quot;</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;/dataset&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Cada línea XML define un dato en la tabla con el nombre indicado. Por
+ejemplo, en el fichero anterior se define un usuario y dos
+tareas. DbUnit se encarga de convertir los atributos en los tipos
+correspondientes a los definidos en las tablas cuando se realiza la
+inserción. Hay que hacer notar que en DBUnit hay que definir las
+fechas con el formato <code>AAAA-MM-DD</code>.</p>
+<p>Para realizar la inserción en la base de datos con la que van a
+trabajar los tests se ejecuta la siguiente función:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="nd">@Before</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initData</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+      <span class="n">JndiDatabaseTester</span> <span class="n">databaseTester</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JndiDatabaseTester</span><span class="o">(</span><span class="s">&quot;DBTest&quot;</span><span class="o">);</span>
+      <span class="n">IDataSet</span> <span class="n">initialDataSet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlatXmlDataSetBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&quot;test/resources/usuarios_dataset.xml&quot;</span><span class="o">));</span>
+      <span class="n">databaseTester</span><span class="o">.</span><span class="na">setDataSet</span><span class="o">(</span><span class="n">initialDataSet</span><span class="o">);</span>
+      <span class="n">databaseTester</span><span class="o">.</span><span class="na">setSetUpOperation</span><span class="o">(</span><span class="n">DatabaseOperation</span><span class="o">.</span><span class="na">CLEAN_INSERT</span><span class="o">);</span>
+      <span class="n">databaseTester</span><span class="o">.</span><span class="na">onSetup</span><span class="o">();</span>
+   <span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Se obtiene la base de datos a través de su nombre JNDI. Y después se
+cargan los datos realizando una operación <code>CLEAN_INSERT</code>. En este tipo
+de operación DbUnit borra todos los datos de todas las tablas que
+aparecen en el fichero XML y después realiza la inserción.</p>
+<p>La etiqueta <code>@Before</code> hace que la función se ejecute antes de cada
+test.</p>
+<h3 id="23-nuevo-issue-con-tests">2.3. Nuevo <em>issue</em> con tests<a class="headerlink" href="#23-nuevo-issue-con-tests" title="Permanent link">&para;</a></h3>
+<p>Crea un nuevo <em>issue</em> (y una rama, y después un pull request para
+integrarlo con master, igual que en la práctica 1) con la descripción
+<code>Nuevos tests práctica 2</code>. Puedes ponerle la etiqueta <code>tech</code>. </p>
+<p>Para completar el <em>issue</em> debes hacer lo siguiente:</p>
+<ul>
+<li>Añade un usuario y una tarea en el fichero XML.</li>
+<li>Crea una nueva clase de tests el directorio <code>test/practica2</code> con el
+  nombre <code>Practica2Test</code>. Añade en él 4 nuevos tests que comprueben
+  condiciones que no hemos comprobado en la práctica 1. </li>
+<li>Ejemplos: </li>
+<li>Test que comprueba que el método <code>findUsuarioPorId</code> de
+  <code>UsuarioService</code> devuelve <code>null</code> si se le pasa un identificador no
+  existente.</li>
+<li>Test que comprueba que el método <code>borraTarea</code> de <code>TareaService</code>
+    lanza una excepción si se le pasa un identificador de tarea no
+    existente. </li>
+</ul>
+<h2 id="3-definicion-de-configuraciones">3. Definición de configuraciones<a class="headerlink" href="#3-definicion-de-configuraciones" title="Permanent link">&para;</a></h2>
+<p>Hemos comprobado en la práctica 1 que el fichero <code>application.conf</code> sirve
+para definir la configuración con la que se va ejecutar la aplicación
+Play. Hemos definido en él la base de datos en memoria <code>H2</code> con la que
+se ejecuta la aplicación. Esta configuración es la que denominamos
+<strong>configuración de desarrollo</strong>, que es la configuración por defecto
+utilizada durante el desarrollo de la aplicación.</p>
+<p>Vamos a ver en este apartado cómo definir configuraciones alternativas
+en las que ejecutar los tests:</p>
+<ul>
+<li><strong>Configuración de integración</strong>: configuración que se utilizaremos
+  en las pruebas de integración. Estará constituida por una base de
+  datos MySQL contendrá los datos introducidos por los tests. El hecho
+  de trabajar con MySQL en lugar de la base de datos de memoria hará
+  que esta configuración sea más parecida a la que se utiliza en el
+  despliegue real en producción de la aplicación.</li>
+<li><strong>Configuración de stage</strong>: configuración muy similar a la de
+  producción en la que se realizarán pruebas funcionales. Estará
+  formada por una base de datos MySQL con datos estables que se irán
+  añadiendo en los tests funcionales, creando un entorno muy similar
+  al de producción.</li>
+</ul>
+<p>Lanzaremos los tests en la configuración de integración. Y
+ejecutaremos la aplicación para lanzar pruebas funcionales en la
+configuración de <em>stage</em>.</p>
+<h3 id="31-configuracion-de-pruebas-de-integracion">3.1. Configuración de pruebas de integración<a class="headerlink" href="#31-configuracion-de-pruebas-de-integracion" title="Permanent link">&para;</a></h3>
+<p>Empezaremos solucionando un problema importante de los tests:
+conseguir que carguen el fichero de configuración, en lugar de definir
+en el código las conexiones a la base de datos. Después añadiremos un
+fichero de configuración de conexión con una base de datos MySQL y
+veremos cómo lanzar los tests para que usen esa configuración.</p>
+<h4 id="nuevo-issue-configuracion-entorno-de-integracion">Nuevo issue: Configuración entorno de integración<a class="headerlink" href="#nuevo-issue-configuracion-entorno-de-integracion" title="Permanent link">&para;</a></h4>
+<p>Debes crear un nuevo <em>issue</em> con la descripción <code>Configuración entorno
+de integración</code> en el que deberás incluir los
+cambios que se indiquen los siguientes apartados. Puedes ponerle la
+etiqueta <code>tech</code>.</p>
+<p>Crea una rama en la que desarrolles este nuevo <em>issue</em>.</p>
+<h4 id="refactorizacion-de-los-tests">Refactorización de los tests<a class="headerlink" href="#refactorizacion-de-los-tests" title="Permanent link">&para;</a></h4>
+<p>Vamos a ver cómo refactorizar los tests para que se lancen sobre una
+base de datos definida en el fichero de configuración.</p>
+<h5 id="problema-los-tests-no-usan-el-fichero-de-configuracion">Problema: los tests no usan el fichero de configuración<a class="headerlink" href="#problema-los-tests-no-usan-el-fichero-de-configuracion" title="Permanent link">&para;</a></h5>
+<p>El problema de los tests tal y como están escritos en la actualidad es
+que la base de datos de prueba sobre la que trabajan no se puede
+definir en el fichero de configuración, sino que está definida en su
+código fuente.</p>
+<p>Como hemos visto anteriormente, la base de datos se inicializa a mano, obteniéndose
+el <code>JPAApi</code> usando una configuración concreta:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="nd">@BeforeClass</span>
+   <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDatabase</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// Inicializamos la BD en memoria y su nombre JNDI</span>
+      <span class="n">db</span> <span class="o">=</span> <span class="n">Databases</span><span class="o">.</span><span class="na">inMemoryWith</span><span class="o">(</span><span class="s">&quot;jndiName&quot;</span><span class="o">,</span> <span class="s">&quot;DBTest&quot;</span><span class="o">);</span>
+      <span class="o">...</span>
+      <span class="c1">// Activamos en JPA la unidad de persistencia &quot;memoryPersistenceUnit&quot;</span>
+      <span class="c1">// declarada en META-INF/persistence.xml y obtenemos el objeto</span>
+      <span class="c1">// JPAApi</span>
+      <span class="n">jpaApi</span> <span class="o">=</span> <span class="n">JPA</span><span class="o">.</span><span class="na">createFor</span><span class="o">(</span><span class="s">&quot;memoryPersistenceUnit&quot;</span><span class="o">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Después, en cada test, usamos el <code>jpaApi</code> obtenido para construir un
+<em>service</em> o un <em>repostory</em>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="nd">@Test</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">crearNuevoUsuarioCorrectoTest</span><span class="o">(){</span>
+      <span class="n">UsuarioRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JPAUsuarioRepository</span><span class="o">(</span><span class="n">jpaApi</span><span class="o">);</span>
+      <span class="n">UsuarioService</span> <span class="n">usuarioService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UsuarioService</span><span class="o">(</span><span class="n">repository</span><span class="o">);</span>
+      <span class="n">Usuario</span> <span class="n">usuario</span> <span class="o">=</span> <span class="n">usuarioService</span><span class="o">.</span><span class="na">creaUsuario</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="s">&quot;123456&quot;</span><span class="o">);</span>
+      <span class="n">assertNotNull</span><span class="o">(</span><span class="n">usuario</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getLogin</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;123456&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+   <span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Este código hace que los tests sean poco configurables ya que no
+estamos obteniendo la base de datos definida en el fichero de
+configuración. Si queremos cambiar la base de datos sobre la que
+trabajan los tests hay que modificar el propio código fuente.</p>
+<h5 id="refactorizacion-de-los-tests_1">Refactorización de los tests<a class="headerlink" href="#refactorizacion-de-los-tests_1" title="Permanent link">&para;</a></h5>
+<p>Vamos a modificar el código para que la base de datos que se utilice
+no esté escrita <em>a fuego</em> en el código, sino que sea la definida en el
+fichero de configuración. De esta forma, modificando el fichero
+modificaremos también la configuración de los tests.</p>
+<p>Para conseguirlo haremos en los tests igual que en la aplicación:
+obteniendo la JPAApi mediante la inyección de dependencias. </p>
+<p>El problema es que las anotaciones <code>@inject</code> no funcionan en los
+tests. Los tests son programas Java independientes que se ejecutan al
+margen de la aplicación principal, que es donde se ejecuta el código
+que inicializa los objetos inyectados. </p>
+<p>Tenemos nosotros que obtener a mano los objetos llamando
+explícitamente a la librería <code>Guice</code> que es la que gestiona la
+inyección de dependencias. A continuación vemos cómo hacerlo en un
+test concreto, por ejemplo en el fichero <code>UsuarioServiceTest.java</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsuarioServiceTest</span> <span class="o">{</span>
+   <span class="kd">static</span> <span class="kd">private</span> <span class="n">Injector</span> <span class="n">injector</span><span class="o">;</span>
+
+   <span class="nd">@BeforeClass</span>
+   <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initApplication</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">GuiceApplicationBuilder</span> <span class="n">guiceApplicationBuilder</span> <span class="o">=</span>
+          <span class="k">new</span> <span class="n">GuiceApplicationBuilder</span><span class="o">().</span><span class="na">in</span><span class="o">(</span><span class="n">Environment</span><span class="o">.</span><span class="na">simple</span><span class="o">());</span>
+      <span class="n">injector</span> <span class="o">=</span> <span class="n">guiceApplicationBuilder</span><span class="o">.</span><span class="na">injector</span><span class="o">();</span>
+      <span class="c1">// Instanciamos un JPAApi para que inicializar JPA</span>
+      <span class="n">injector</span><span class="o">.</span><span class="na">instanceOf</span><span class="o">(</span><span class="n">JPAApi</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="o">}</span>
+
+   <span class="kd">private</span> <span class="n">UsuarioService</span> <span class="nf">newUsuarioService</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">injector</span><span class="o">.</span><span class="na">instanceOf</span><span class="o">(</span><span class="n">UsuarioService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="o">}</span>
+
+   <span class="nd">@Test</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">crearNuevoUsuarioCorrectoTest</span><span class="o">(){</span>
+      <span class="n">UsuarioService</span> <span class="n">usuarioService</span> <span class="o">=</span> <span class="n">newUsuarioService</span><span class="o">();</span>
+      <span class="n">Usuario</span> <span class="n">usuario</span> <span class="o">=</span> <span class="n">usuarioService</span><span class="o">.</span><span class="na">creaUsuario</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="s">&quot;123456&quot;</span><span class="o">);</span>
+      <span class="n">assertNotNull</span><span class="o">(</span><span class="n">usuario</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;luciaruiz&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getLogin</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;lucia.ruiz@gmail.com&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;123456&quot;</span><span class="o">,</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+   <span class="o">}</span>
+
+   <span class="o">...</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>En el código anterior la creación de un <code>GuiceApplicationBuilder</code> con
+un entorno simple realiza una inicialización de la aplicación Play con
+el fichero de configuración por defecto. Después se obtiene un objeto
+<code>Injector</code> que usamos para obtener instancias de clases mediante la
+inyección de dependencias. En concreto, el método <code>newUsuarioService()</code>
+obtiene del inyector una instancia de un <code>UsuarioService</code>. A este
+método se llama en cada test para obtener un <code>UsuarioService</code> del que
+probar sus métodos.</p>
+<h5 id="commit-refactorizacion-de-los-tests">Commit: Refactorización de los tests<a class="headerlink" href="#commit-refactorizacion-de-los-tests" title="Permanent link">&para;</a></h5>
+<p>Debes crear un nuevo commit en la rama recién creada con la descripción
+<code>Refactorizados tests</code> en el que deberás refactorizar todos los tests
+para que se obtengan los objetos necesarios usando inyección de
+dependencias.</p>
+<p>Para ello realiza todos los cambios en los ficheros de tests que
+aparecen en el [PR</p>
+<h1 id="27httpsgithubcomdomingogallardomads-todolist-guiapull27files">27](https://github.com/domingogallardo/mads-todolist-guia/pull/27/files)<a class="headerlink" href="#27httpsgithubcomdomingogallardomads-todolist-guiapull27files" title="Permanent link">&para;</a></h1>
+<p>de la práctica guía. No modifiques por ahora el fichero de
+configuración, ni crees nuevos tests (aunque son modificaciones que
+aparecen en el PR, no las debes hacer).</p>
+<p>Una vez hecho esto deberás comprobar que los tests funcionan
+correctamente los tests con la configuración original (base de datos
+en memoria <code>H2</code>) y añadir en otro commit cambios para que los tests carguen una
+configuración de base de datos alternativa, como una base de datos
+MySQL. En el siguiente apartado vemos cómo hacerlo.</p>
+<h4 id="ejecucion-de-tests-con-base-de-datos-mysql">Ejecución de tests con base de datos MySQL<a class="headerlink" href="#ejecucion-de-tests-con-base-de-datos-mysql" title="Permanent link">&para;</a></h4>
+<p>Vamos a ver cómo lanzar una base de datos MySQL y cómo definir el
+fichero de configuración para que la aplicación Play se conecte a
+ella.</p>
+<h5 id="ejecucion-de-una-base-de-datos-mysql-con-un-contenedor-docker">Ejecución de una base de datos MySQL con un contenedor Docker<a class="headerlink" href="#ejecucion-de-una-base-de-datos-mysql-con-un-contenedor-docker" title="Permanent link">&para;</a></h5>
+<p>En primer lugar vamos a ver cómo lanzar la base de datos
+MySQL. Podríamos realizar una instalación de MySQL en nuestro
+ordenador, pero vamos a usar también Docker en lugar de
+ello. Utilizaremos la imagen
+<a href="https://store.docker.com/images/mysql">MySQL</a>.</p>
+<p>Para lanzar un contenedor con la imagen anterior ejecutamos el
+siguiente comando:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker run -d --rm -p 3306:3306 --name play-mysql -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql
+</pre></div>
+</td></tr></table>
+
+<p>Este comando lanza un contenedor que crea una base de datos llamada
+<code>mads</code> y con la contraseña de <code>root</code> <code>mads</code>. Le da el nombre
+<code>play-mysql</code> que después usaremos para enlazar con el contenedor de
+Play. La opción <code>-p 3306:3306</code> permite acceder a la base de datos
+desde el host (lo veremos más adelante).</p>
+<p>Podemos comprobar que el contenedor está funcionando con el comando
+<code>docker container ls</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker container ls
+CONTAINER ID  IMAGE  COMMAND                  CREATED         STATUS         PORTS                  NAMES
+7c1bed0b5b7e  mysql  &quot;docker-entrypoint...&quot;   6 seconds ago   Up 4 seconds   0.0.0.0:3306-&gt;3306/tcp play-mysql
+</pre></div>
+</td></tr></table>
+
+<p>El comando <code>docker container ls</code> lista los contenedores activos. Podemos usar el
+identificador o el nombre del contenedor para pararlo:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker container stop play-mysql
+</pre></div>
+</td></tr></table>
+
+<p>Una vez parado se borrará automáticamente por haber usado la opción
+<code>--rm</code> en su lanzamiento. (en el caso de no usar esta opción tendremos
+que borrarlo nosotros manualmente con el comando <code>docker container rm
+play-mysql</code>).</p>
+<h5 id="ejecucion-de-los-tests-con-la-base-de-datos-mysql">Ejecución de los tests con la base de datos MySQL<a class="headerlink" href="#ejecucion-de-los-tests-con-la-base-de-datos-mysql" title="Permanent link">&para;</a></h5>
+<p>Para ejecutar los tests con la base de datos MySQL vamos a definir un
+nuevo fichero de configuración que llamaremos <code>integration.conf</code>.</p>
+<p>Utilizaremos una característica del sistema de configuración de
+Play en la que podemos dar a las variables los valores definidos por
+variables de entorno usando la sintaxis:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>variable = ${?VARIABLE_ENTORNO}
+</pre></div>
+</td></tr></table>
+
+<p>El nuevo fichero de configuración es el siguiente:</p>
+<p><strong>Fichero conf/integration.conf</strong>  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>include &quot;application.conf&quot;
+
+jpa.default = mySqlPersistenceUnit
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
+</pre></div>
+</td></tr></table>
+
+<p>En primer lugar el fichero incluye la configuración por defecto
+<code>application.conf</code> y después modifica el valor de las variables que
+nos interesan. </p>
+<p>En concreto inicializamos la conexión JPA por defecto al perfil
+<code>mySqlPersistenceUnit</code>. Veremos más adelante la definición de este
+perfil en el fichero <code>persistence.xml</code>.</p>
+<p>Y después definimos las variables necesarias para la conexión a una
+base de datos MySQL. Para que la configuración sea flexible, obtenemos
+los valores de variables de entorno que estarán definidas en el
+sistema en el que ejecutemos los tests de integración.</p>
+<p>El fichero de configuración de JPA debe quedar como sigue, añadiendo el nuevo perfil
+de conexión con una base de datos MySQL (el perfil <code>mySqlPersistenceUnit</code>):</p>
+<p><strong>Fichero <code>conf/META-INF/persistence.xml</code></strong>:  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">&lt;persistence</span> <span class="na">xmlns=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence&quot;</span>
+             <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+             <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://xmlns.jcp.org/xml/ns/persistence </span>
+<span class="s">http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd&quot;</span>
+             <span class="na">version=</span><span class="s">&quot;2.1&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Memory persistence Unit --&gt;</span>
+
+    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;memoryPersistenceUnit&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;provider&gt;</span>org.hibernate.jpa.HibernatePersistenceProvider<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;non-jta-data-source&gt;</span>DBTest<span class="nt">&lt;/non-jta-data-source&gt;</span>
+        <span class="nt">&lt;properties&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.dialect&quot;</span> <span class="na">value=</span><span class="s">&quot;org.hibernate.dialect.H2Dialect&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span> <span class="na">value=</span><span class="s">&quot;update&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/persistence-unit&gt;</span>
+
+    <span class="c">&lt;!-- MySQL Persistence Unit --&gt;</span>
+
+    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">&quot;mySqlPersistenceUnit&quot;</span> <span class="na">transaction-type=</span><span class="s">&quot;RESOURCE_LOCAL&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;provider&gt;</span>org.hibernate.jpa.HibernatePersistenceProvider<span class="nt">&lt;/provider&gt;</span>
+        <span class="nt">&lt;non-jta-data-source&gt;</span>DBTest<span class="nt">&lt;/non-jta-data-source&gt;</span>
+        <span class="nt">&lt;properties&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.dialect&quot;</span> <span class="na">value=</span><span class="s">&quot;org.hibernate.dialect.MySQL5Dialect&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.hbm2ddl.auto&quot;</span> <span class="na">value=</span><span class="s">&quot;update&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/persistence-unit&gt;</span>
+<span class="nt">&lt;/persistence&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Cuando la aplicación Play se conecte a la base de datos el esquema de
+datos de actualiza automáticamente debido al valor <code>update</code> en la
+propiedad <code>hibernate.hbm2ddl.auto</code>. Este valor indica que el esquema
+de datos de la base de datos se actualiza para ajustarse a las
+entidades definidas en la aplicación. Por ejemplo, cuando se añade
+algún atributo a alguna entidad, se añade automáticamente una columna
+más a la tabla correspondiente.</p>
+<p>Una vez realizados los cambios anteriores, y estando el contenedor
+docker MySQL en funcionamiento, podemos lanzar la aplicación Play 
+con el siguiente comando:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker run --link play-mysql:mysql --rm -it -p 80:9000 -e \
+DB_URL=&quot;jdbc:mysql://play-mysql:3306/mads&quot; -e DB_USER_NAME=&quot;root&quot; -e \
+DB_USER_PASSWD=&quot;mads&quot; -v &quot;${PWD}:/code&quot; domingogallardo/playframework /bin/bash
+</pre></div>
+</td></tr></table>
+
+<p>La opción <code>--link</code> define el nombre del contenedor con el que enlazar
+en el que se está ejecutando MySQL y las opciones <code>-e</code> definen los
+valores de las variables de entorno que usará el fichero de
+configuración. </p>
+<p>Añadimos <code>/bin/bash</code> al final para que sea este el
+comando que se ejecute en el contenedor, en lugar de <code>sbt</code>. Por ello
+el comando anterior lanzará un shell:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>bash-4.3# 
+</pre></div>
+</td></tr></table>
+
+<p>Por último, sólo nos falta llamar a <code>sbt</code> desde el shell para que
+cargue el nuevo fichero de configuración y lance los tests:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>bash-4.3# sbt &#39;; set javaOptions += &quot;-Dconfig.file=conf/integration.conf&quot;; test&#39;
+</pre></div>
+</td></tr></table>
+
+<p>También podríamos hacer un <code>run</code> o un <code>testOnly</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ sbt &#39;; set javaOptions += &quot;-Dconfig.file=conf/integration.conf&quot;; run&#39;
+$ sbt &#39;; set javaOptions += &quot;-Dconfig.file=conf/integration.conf&quot;; testOnly Integration*&#39;
+</pre></div>
+</td></tr></table>
+
+<p>Una vez que compruebes que los tests funcionan correctamente con la
+base de datos MySQL puedes confirmar los cambios en un nuevo commit
+(puedes poner el mensaje <code>Añadido integration.conf para conexión con
+BD Mysql</code>), sube el nuevo commit.</p>
+<h5 id="conexion-a-la-base-de-datos-desde-el-host">Conexión a la base de datos desde el host<a class="headerlink" href="#conexion-a-la-base-de-datos-desde-el-host" title="Permanent link">&para;</a></h5>
+<p>Es posible conectarse al servicio en el <code>hostname</code> <code>127.0.0.1</code> y en el
+puerto 3306.  Por ejemplo con el cliente MySQL desde el terminal:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ mysql -h 127.0.0.1 -u root -p
+...
+mysql&gt; use mads;
+Database changed
+mysql&gt; show tables;
++--------------------+
+| Tables_in_mads     |
++--------------------+
+| Tarea              |
+| Usuario            |
+| hibernate_sequence |
++--------------------+
+3 rows in set (0,00 sec)
+
+mysql&gt; quit;
+</pre></div>
+</td></tr></table>
+
+<p>O desde alguna herramienta como el <em>MySQL Workbench</em>, creando una
+conexión como muestra la siguiente imagen:</p>
+<p><img src="imagenes/mysql-workbench.png" width="600px"/></p>
+<h4 id="exportacion-del-esquema-de-datos">Exportación del esquema de datos<a class="headerlink" href="#exportacion-del-esquema-de-datos" title="Permanent link">&para;</a></h4>
+<p>Por último, vamos a terminar el <em>issue</em> añadiendo al repositorio un fichero SQL
+con el esquema de datos.</p>
+<p>Una vez que hayas lanzado los tests JPA habrá creado el esquema de
+datos en la base de datos MySQL que está corriendo en el contenedor <code>play-mysql</code>.</p>
+<p>Podemos entonces ejecutar el comando <code>mysqldump</code> dentro del contenedor:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker exec play-mysql sh -c &#39;exec mysqldump --no-data mads -uroot -pmads&#39; &gt; schema.sql
+</pre></div>
+</td></tr></table>
+
+<p>El comando anterior ejecuta el comando <code>mysqldump</code> en el contenedor
+docker que exporta el esquema de datos (sin los datos añadidos) y lo
+graba el fichero <code>schema.sql</code> en el directorio actual. Edítalo para
+eliminar el día y la hora, ya que queremos que sólo aparezca
+información estrictamente del esquema de la base de datos. </p>
+<p>Copia el fichero <code>schema.sql</code> en un nuevo directorio <code>sql</code> en la raíz
+del proyecto Play. De esta forma podremos comprobar más adelante las
+diferencias cuando modifiquemos la base de datos al evolucionar las
+entidades de la aplicación.</p>
+<p>El fichero debería ser parecido a este:</p>
+<p><strong>Fichero <code>sql/schema.sql</code></strong>:  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">-- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)</span>
+<span class="c1">--</span>
+<span class="c1">-- Host: localhost    Database: mads</span>
+<span class="c1">-- ------------------------------------------------------</span>
+<span class="c1">-- Server version   5.7.19</span>
+
+<span class="cm">/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET NAMES utf8 */</span><span class="p">;</span>
+<span class="cm">/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */</span><span class="p">;</span>
+<span class="cm">/*!40103 SET TIME_ZONE=&#39;+00:00&#39; */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=&#39;NO_AUTO_VALUE_ON_ZERO&#39; */</span><span class="p">;</span>
+<span class="cm">/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `Tarea`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">Tarea</span><span class="o">`</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @saved_cs_client     = @@character_set_client */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = utf8 */</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Tarea</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">titulo</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">usuarioId</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">FKepne2t52y8dmn8l9da0dd7l51</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">usuarioId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FKepne2t52y8dmn8l9da0dd7l51</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">usuarioId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">Usuario</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = @saved_cs_client */</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `Usuario`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">Usuario</span><span class="o">`</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @saved_cs_client     = @@character_set_client */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = utf8 */</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Usuario</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">apellidos</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">fechaNacimiento</span><span class="o">`</span> <span class="nb">date</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">login</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">nombre</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">password</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = @saved_cs_client */</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `hibernate_sequence`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">hibernate_sequence</span><span class="o">`</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @saved_cs_client     = @@character_set_client */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = utf8 */</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">hibernate_sequence</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">next_val</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
+<span class="cm">/*!40101 SET character_set_client = @saved_cs_client */</span><span class="p">;</span>
+
+<span class="cm">/*!40101 SET SQL_MODE=@OLD_SQL_MODE */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */</span><span class="p">;</span>
+<span class="cm">/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Añade al final del fichero la inicialización de la tabla de secuencias de
+Hibernate, necesaria para que Hibernate genere las claves primarias de
+las entidades:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">--</span>
+<span class="c1">-- Dumping data for table `hibernate_sequence`</span>
+<span class="c1">--</span>
+
+<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">hibernate_sequence</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="cm">/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">hibernate_sequence</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">);</span>
+<span class="cm">/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */</span><span class="p">;</span>
+<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+<span class="cm">/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Realiza un último commit en el que se incluya el fichero <code>schema.sql</code>
+y <strong>cierra el <em>issue</em> con un pull request</strong>.</p>
+<h3 id="32-configuracion-de-stage">3.2. Configuración de <em>stage</em><a class="headerlink" href="#32-configuracion-de-stage" title="Permanent link">&para;</a></h3>
+<p>Una configuración de <em>stage</em> es una configuración de despliegue de la
+aplicación preparada para que sea lo más similar posible al despliegue
+de producción. Se utiliza para realizar las pruebas funcionales y de
+rendimiento de la aplicación.</p>
+<p>Una de las características fundamentales de la configuración de
+<em>stage</em> es que su gestor base de datos debe ser idéntica al gestor de
+base de datos de producción, debe tener el mismo esquema de datos y
+contener datos similares (en cantidad y complejidad) a los que tiene
+la aplicación en producción.</p>
+<p>Vamos a definir una configuración de <em>stage</em> para nuestra aplicación
+Play. Vamos a usar la misma imagen docker MySQL que en la
+configuración de pruebas de integración y una ejecución de nuestra
+aplicación Play en modo <em>stage</em>.</p>
+<p>Lo normal es definir la configuración en un ordenador dedicado, y
+tenerla siempre en funcionamiento (de forma similar a como funciona la
+aplicación en producción). En lugar de esto, para simplificar el
+proceso, vamos a hacer que la imagen MySQL cargue los datos que
+guardamos en cada nueva realización de pruebas funcionales. En cada
+ejecución de pruebas funcionales se probarán con los datos ya
+existentes y se añadirán nuevos datos para realizar nuevas
+pruebas. Al final de la sesión de pruebas funcionales grabaremos todos
+los datos en un fichero que volveremos a usar como datos iniciales la
+próxima vez que arranquemos la configuración de <em>stage</em>.</p>
+<p>También veremos cómo usar sbt para desplegar y lanzar la aplicación
+Play en modo <em>stage</em>.</p>
+<p><strong>Nuevo issue: Configuración entorno de stage</strong></p>
+<p>Creamos un nuevo <em>issue</em> llamado <code>Configuración entorno stage</code>. Puedes
+ponerle la etiqueta <code>tech</code>. Crea una rama en la que desarrolles este
+nuevo <em>issue</em>.</p>
+<p>Crea el fichero de <code>conf/stage.conf</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>include &quot;application.conf&quot;
+
+play.crypto.secret=&quot;abcdefghijkl&quot;
+
+jpa.default = mySqlPersistenceUnitProduction
+
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url=${?DB_URL}
+db.default.username=${?DB_USER_NAME}
+db.default.password=${?DB_USER_PASSWD}
+</pre></div>
+</td></tr></table>
+
+<p>Añade en el fichero <code>conf/META-INF/persistence.xml</code> el nuevo perfil
+<code>mySqlPersistenceUnitProduction</code>. La única diferencia (importante) con
+el perfil de integración es que el <code>hbm2ddl.auto</code> está definido con el
+valor <code>validate</code>. Debido a ello, cuando arranquemos la aplicación Play
+y se conecte a la base de datos lo primero que va a hacer JPA es
+comprobar que el esquema de datos (las tablas definidas en la base de
+datos) se corresponde con lo codificado en las entidades. En el caso
+en que no exista el esquema de datos o no se corresponda con el
+esquema definido por las entidades JPA lanzará un error y no
+funcionará el acceso a los datos.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    &lt;/properties&gt;
+ &lt;/persistence-unit&gt;
+
+<span class="gi">+&lt;!-- MySQL Persistence Unit - Production --&gt;</span>
+<span class="gi">+</span>
+<span class="gi">+&lt;persistence-unit name=&quot;mySqlPersistenceUnitProduction&quot; transaction-type=&quot;RESOURCE_LOCAL&quot;&gt;</span>
+<span class="gi">+   &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;</span>
+<span class="gi">+   &lt;non-jta-data-source&gt;DBTest&lt;/non-jta-data-source&gt;</span>
+<span class="gi">+   &lt;class&gt;models.Usuario&lt;/class&gt;</span>
+<span class="gi">+   &lt;class&gt;models.Tarea&lt;/class&gt;</span>
+<span class="gi">+   &lt;properties&gt;</span>
+<span class="gi">+      &lt;property name=&quot;hibernate.dialect&quot; value=&quot;org.hibernate.dialect.MySQL5Dialect&quot;/&gt;</span>
+<span class="gi">+      &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;validate&quot;/&gt;</span>
+<span class="gi">+   &lt;/properties&gt;</span>
+<span class="gi">+&lt;/persistence-unit&gt;</span>
+<span class="gi">+</span>
+ &lt;/persistence&gt;
+ ```
+
+
+#### Ejecución de pruebas funcionales en el entorno _stage_ ####
+
+La diferencia de esta configuración con la anterior es que en lugar de
+dejar que JPA cree las tablas de la base de datos, vamos nosotros a
+inicializar la base de datos MySQL con los esquemas y datos
+predefinidos, tal y como sucedería en producción.
+
+##### Lanzamiento de MySQL #####
+
+Para inicializar los datos de la imagen docker MySQL podemos utilizar
+su directorio `/docker-entrypoint-initdb.d`. Lo primero que hace la
+imagen es consultar ese directorio y ejecutar todos los ficheros con
+la extensión `.sql` que encuentre ahí. Los ejecuta en el orden
+alfabético del nombre de fichero. 
+
+Vamos entonces a lanzar la configuración de _stage_ por primera
+vez. Creamos un directorio `stage` fuera del repositorio git y
+copiamos ahí el fichero `schema.sql` del repositorio (el que contiene
+el esquema de base de datos actual):
+</pre></div>
+</td></tr></table>
+
+<p>$ cd <ruta-directorio-trabajo>
+$ mkdir stage
+$ cd stage
+$ cp <ruta-proyecto-play>/sql/schema.sql .</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Nos movemos a ese directorio y lanzamos el comando `docker run` 
+montando el directorio actual en el directorio `/docker-entrypoint-initdb.d`:
+</pre></div>
+</td></tr></table>
+
+<p>$ docker run -d --rm --name play-mysql -v ${PWD}:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=mads -e MYSQL_DATABASE=mads mysql</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>De esta forma se lanza MySQL cargando el esquema de datos inicial
+(vacío).
+
+##### Parada de MySQL #####
+
+Cuando hayamos terminado de ejecutar las pruebas funcionales volcamos
+la base de datos a un fichero y paramos MySQL. Para simplificar
+podemos volcarlo para que sobreescriba el anterior fichero `schema.sql`:
+</pre></div>
+</td></tr></table>
+
+<p>$ docker exec play-mysql sh -c 'exec mysqldump mads -uroot -pmads' &gt; schema.sql
+$ docker container stop play-mysql</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Dejamos este fichero `schema.sql` en el directorio actual (`/stage`)
+para que la próxima vez que lancemos MySQL desde él cargue los datos
+anteriormente salvados.
+
+De esta forma podemos simular que tenemos un servidor de stage
+en el que se mantienen los datos que se introducen en las pruebas.
+
+##### Ejecución de la aplicación #####
+
+Para ejecutar la aplicación Play en modo producción lanzamos el
+contenedor play de la misma forma que hacíamos para ejecutar los tests
+de integración (definiendo las variables de entorno para que la
+configuración se conecte con la BD y lanzando el shell bash). Y
+después usamos el comando `stage` de sbt que crea un fichero
+ejecutable en el directorio `target/universal/bin/&lt;proyecto&gt;`. 
+
+Por último lanzamos el ejecutable generado cargando la configuración
+`stage.conf`. 
+</pre></div>
+</td></tr></table>
+
+<p>$ cd <ruta-proyecto-play>
+$ docker run --link play-mysql:mysql --rm -it -p 80:9000 -e \
+DB_URL="jdbc:mysql://play-mysql:3306/mads" -e DB_USER_NAME="root" -e \
+DB_USER_PASSWD="mads" -v${PWD}:/code domingogallardo/playframework /bin/bash
+bash-4.3# sbt clean stage
+bash-4.3# target/universal/stage/bin/mads-todolist-2017 -Dconfig.file=${PWD}/conf/stage.conf</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>El ejecutable que se construye es similar al de producción. Sbt tiene
+un comando `dist` que permite generar un generar un binario listo para
+su distribución. Puedes consultar cómo hacerlo en [Deploying your
+application](https://www.playframework.com/documentation/2.5.x/Deploying).
+
+La aplicación se lanza en modo producción y podemos abrir el navegador
+y realizar los tests funcionales.
+
+Verás que aparecen unos errores debido que el funcionamiento de la aplicación en producción
+es ligeramente distinto al funcionamiento en desarrollo. En el
+repositorio con la guía de la práctica puedes encontrar los cambios a
+realizar, en el [PR
+#26](https://github.com/domingogallardo/mads-todolist-guia/pull/26):
+
+- Añadir getters y setters.
+- Añadir la declaración de las clases de entidad todos los perfiles en el fichero `persistence.xml`.
+
+Arregla los errores, realiza un último commit y **cierra el _issue_ con un pull request**.
+
+## 4. Nueva historia de usuario: tableros (usando TDD) ##
+
+La última parte de la práctica consiste en desarrollar, utilizando TDD
+(_Test Driven Design_) una nueva historia de usuario:
+**Creación y asociación a tableros**.
+
+&lt;kbd&gt;&lt;img src=&quot;imagenes/historias-usuario.png&quot; width=&quot;600px&quot;/&gt;&lt;/kbd&gt;
+
+Definimos la descripción de la historia que se muestra en la siguiente
+imagen:
+
+&lt;kbd&gt;&lt;img src=&quot;imagenes/historia-tableros.png&quot; width=&quot;600px&quot;/&gt;&lt;/kbd&gt;
+
+Implementaremos cada _issue_ de la capa de modelo o la capa de
+servicios utilizando el ciclo de desarrollo de TDD (el código de la
+capa de vista y controlador también se debería probar de esta forma,
+pero no lo vamos a hacer por falta de tiempo):
+
+1. Escribir un test que falla.
+2. Escribir el código que hace que el test deje de fallar.
+3. Refactorizar el código de los tests y el código escrito (sin
+   añadir nuevos tests, ni nuevas funcionalidades).
+4. Volver al paso 1
+
+Un resumen de lo que deberás hacer en esta última parte de la práctica:
+
+- Desarrollarás uno a uno los nuevos _issues_ de la historia de
+  usuario.
+- Al igual que hicimos en la práctica 1, cada _issue_ debe
+  desarrollarse en una rama independiente. Después crearemos un pull
+  request y, tras pasar los tests de integración, lo integraremos con
+  master (consultar en el apartado 3.1 cómo realizar los tests de
+  integración antes de aprobar el pull request).
+- Todos los ficheros de tests deberán crearse en un directorio con el
+  nombre de la historia de usuario. Por ejemplo
+  `sg3-creacion-asociacion-tableros`.
+- Definirás un fichero de test por cada _issue_, que contendrá
+  todos los tests necesarios para implementar el _issue_ y se
+  denominará con un nombre similar.
+- Cada test, junto con el código desarrollado para pasarlo, irá en un
+  commit.
+- Es posible hacer commits con refactorizaciones (recuerda el ciclo de
+  TDD: Test, Codigo y Refactorización).
+- Utilizarás DBUnit para poder hacer pruebas con datos
+  iniciales, añadiendo nuevos datos en el fichero `usuarios_dataset.xml`.
+
+Veamos a continuación como ejemplo el desarrollo completo del primer
+_issue_.
+
+
+### 4.1. Primer _issue_: Modelo de tablero y repositorio básico
+
+En este _issue_ completaremos una clase básica de entidad `Tablero`
+con los atributos:
+
+- Nombre
+- Administrador (relación a-uno con la entidad `Usuario`)
+
+También crearemos la clase `TableroRepository` con un primer método
+para crear tableros. 
+
+Para implementar esta característica usando TDD crearemos el fichero
+de test
+`test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`
+en el que iremos añadiendo los
+distintos tests que irán construyendo el código.
+
+Abrimos una rama en la que iremos añadiendo los commits del _issue_
+(uno por cada test). 
+</pre></div>
+</td></tr></table>
+
+<p>$ git checkout -b modelo-tablero</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Empezamos ahora a usar TDD para implementar el _issue_. El
+primer test nos servirá para definir los elementos básicos de la
+entidad `Tablero`.
+
+#### Commit 1: Primer test ####
+
+Empezamos con el test más sencillo: crear un tablero. Para crear un
+tablero necesitaremos pasar un usuario y un nombre de tablero.
+
+**Fichero `test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java`**:
+
+```java
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import models.Usuario;
+import models.Tablero;
+
+public class ModeloRepositorioTableroTest {
+
+   @Test
+   public void testCrearTablero() {
+      Usuario usuario = new Usuario(&quot;juangutierrez&quot;, &quot;juangutierrez@gmail.com&quot;);
+      Tablero tablero = new Tablero(usuario, &quot;Tablero 1&quot;);
+
+      assertEquals(&quot;juangutierrez&quot;, tablero.getAdministrador().getLogin());
+      assertEquals(&quot;juangutierrez@gmail.com&quot;, tablero.getAdministrador().getEmail());
+      assertEquals(&quot;Tablero 1&quot;, tablero.getNombre());
+   }
+}
+</pre></div>
+</td></tr></table>
+
+<p>Lanzamos los tests y, evidentemente, obtendremos errores de
+compilación porque no existen las clases:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todolist-2017] $ testOnly
+[info] Compiling 6 Java sources to /code/target/scala-2.11/test-classes...
+[error] /code/test/models/TableroTest.java:5: cannot find symbol
+[error]   symbol:   class Tablero
+[error]   location: package models
+...
+[error] Total time: 15 s, completed Sep 30, 2017 3:30:33 PM
+</pre></div>
+</td></tr></table>
+
+<p>Creamos las clases con <strong>solo el código necesario para que el test pase</strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">models.Usuario</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">models.Tablero</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModeloRepositorioTableroTest</span> <span class="o">{</span>
+
+   <span class="nd">@Test</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testCrearTablero</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">Usuario</span> <span class="n">usuario</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Usuario</span><span class="o">(</span><span class="s">&quot;juangutierrez&quot;</span><span class="o">,</span> <span class="s">&quot;juangutierrez@gmail.com&quot;</span><span class="o">);</span>
+      <span class="n">Tablero</span> <span class="n">tablero</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tablero</span><span class="o">(</span><span class="n">usuario</span><span class="o">,</span> <span class="s">&quot;Tablero 1&quot;</span><span class="o">);</span>
+
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;juangutierrez&quot;</span><span class="o">,</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getAdministrador</span><span class="o">().</span><span class="na">getLogin</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;juangutierrez@gmail.com&quot;</span><span class="o">,</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getAdministrador</span><span class="o">().</span><span class="na">getEmail</span><span class="o">());</span>
+      <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;Tablero 1&quot;</span><span class="o">,</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getNombre</span><span class="o">());</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Hacemos un commit con el test y el código que hemos creado</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git status
+$ git commit -m &quot;Creada clase Tablero&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-2-segundo-test">Commit 2: Segundo test<a class="headerlink" href="#commit-2-segundo-test" title="Permanent link">&para;</a></h4>
+<p>Vamos con un segundo test en el que añadimos otro pequeño incremento:
+creación del <code>JPATableroRepository</code> y comprobación de que se obtiene
+correctamente un objeto <code>TableroRepository</code>.</p>
+<p>Escribimos el test, añadiendo el código al fichero existente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> import org.junit.*;
+ import static org.junit.Assert.*;
+
+<span class="gi">+import play.inject.guice.GuiceApplicationBuilder;</span>
+<span class="gi">+import play.inject.Injector;</span>
+<span class="gi">+import play.inject.guice.GuiceInjectorBuilder;</span>
+<span class="gi">+import play.Environment;</span>
+<span class="gi">+</span>
+<span class="gi">+import play.db.jpa.*;</span>
+<span class="gi">+</span>
+ import models.Usuario;
+ import models.Tablero;
+<span class="gi">+import models.TableroRepository;</span>
+
+ public class ModeloRepositorioTableroTest {
+<span class="gi">+   static private Injector injector;</span>
+<span class="gi">+</span>
+<span class="gi">+   @BeforeClass</span>
+<span class="gi">+   static public void initApplication() {</span>
+<span class="gi">+      GuiceApplicationBuilder guiceApplicationBuilder =</span>
+<span class="gi">+          new GuiceApplicationBuilder().in(Environment.simple());</span>
+<span class="gi">+      injector = guiceApplicationBuilder.injector();</span>
+<span class="gi">+      // Necesario para inicializar JPA</span>
+<span class="gi">+      injector.instanceOf(JPAApi.class);</span>
+<span class="gi">+   }</span>
+
+    @Test
+    public void testCrearTablero() {
+...
+       assertEquals(&quot;juangutierrez@gmail.com&quot;, tablero.getAdministrador().getEmail());
+       assertEquals(&quot;Tablero 1&quot;, tablero.getNombre());
+    }
+<span class="gi">+</span>
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testObtenerTableroRepository() {</span>
+<span class="gi">+      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);</span>
+<span class="gi">+      assertNotNull(tableroRepository);</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Lanzamos el test y comprobamos que no funciona. Escribimos el código
+mínimo para hacer que funcione:</p>
+<p><strong>Fichero <code>models/TableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">models</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.inject.Inject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">play.db.jpa.JPAApi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.EntityManager</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TableroRepository</span> <span class="o">{</span>
+   <span class="n">JPAApi</span> <span class="n">jpaApi</span><span class="o">;</span>
+
+   <span class="nd">@Inject</span>
+   <span class="kd">public</span> <span class="nf">TableroRepository</span><span class="o">(</span><span class="n">JPAApi</span> <span class="n">api</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">jpaApi</span> <span class="o">=</span> <span class="n">api</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Comprobamos que el test funciona:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[mads-todolist-2017] $ testOnly ModeloRepositorio*
+[info] Test run started
+...
+[info] Test ModeloRepositorioTableroTest.testObtenerTableroRepository started
+[info] Test run finished: 0 failed, 0 ignored, 2 total, 12.975s
+[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
+</pre></div>
+</td></tr></table>
+
+<p>Una vez que el test pasa correctamente <strong>hacemos una refactorización</strong>,
+sin tocar el test, para convertir <code>TableroRepository</code> en una interfaz
+y definir una clase específica de la interfaz: <code>JPATableroRepository</code>:</p>
+<p><strong>Fichero <code>models/TableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">models</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.google.inject.ImplementedBy</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@ImplementedBy</span><span class="o">(</span><span class="n">JPATableroRepository</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TableroRepository</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Fichero <code>models/JPATableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">models</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.inject.Inject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">play.db.jpa.JPAApi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.EntityManager</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JPATableroRepository</span> <span class="kd">implements</span> <span class="n">TableroRepository</span> <span class="o">{</span>
+   <span class="n">JPAApi</span> <span class="n">jpaApi</span><span class="o">;</span>
+
+   <span class="nd">@Inject</span>
+   <span class="kd">public</span> <span class="nf">JPATableroRepository</span><span class="o">(</span><span class="n">JPAApi</span> <span class="n">api</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">jpaApi</span> <span class="o">=</span> <span class="n">api</span><span class="o">;</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Terminamos haciendo el commit del segundo test:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git status
+$ git add .
+$ git commit -m &quot;Creado TableroRepository&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-3-tercer-test">Commit 3: Tercer test<a class="headerlink" href="#commit-3-tercer-test" title="Permanent link">&para;</a></h4>
+<p>En el tercer test vamos a comprobar si se crea la tabla <code>TABLERO</code> en
+la base de datos. Fallará y escribiremos el código para que pase.</p>
+<p>El test consistirá en buscar en los metadatos de la base de datos si
+existe esa tabla.</p>
+<p><strong>Cambios en el fichero <code>test/sg3-creacion-asociacion-tableros/ModeloRepositorioTableroTest.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> import org.dbunit.dataset.xml.*;
+ import org.dbunit.operation.*;
+ import java.io.FileInputStream;
+
+<span class="gi">+import play.db.Database;</span>
+<span class="gi">+import play.db.Databases;</span>
+<span class="gi">+</span>
+<span class="gi">+import java.sql.*;</span>
+<span class="gi">+</span>
+ import models.Usuario;
+...
+<span class="gi">+</span>
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testCrearTablaTableroEnBD() throws Exception {</span>
+<span class="gi">+      Database db = injector.instanceOf(Database.class);</span>
+<span class="gi">+      Connection connection = db.getConnection();</span>
+<span class="gi">+      DatabaseMetaData meta = connection.getMetaData();</span>
+<span class="gi">+      ResultSet res = meta.getTables(null, null, &quot;TABLERO&quot;, new String[] {&quot;TABLE&quot;});</span>
+<span class="gi">+      assertTrue(res.next());</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>El test fallará porque la tabla <code>TABLERO</code> no se encuentra. Modificamos
+entonces el código para solucionarlo, añadiendo las anotaciones JPA
+a la clase <code>Tablero</code>:</p>
+<p><strong>Cambios en el fichero <code>models/Tablero.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gi">+import javax.persistence.*;</span>
+<span class="gi">+</span>
+<span class="gi">+@Entity</span>
+ public class Tablero {
+<span class="gi">+   @Id</span>
+<span class="gi">+   @GeneratedValue(strategy=GenerationType.AUTO)</span>
+<span class="gi">+   Long id;</span>
+    private String nombre;
+<span class="gi">+   @ManyToOne</span>
+<span class="gi">+   @JoinColumn(name=&quot;administradorId&quot;)</span>
+    private Usuario administrador;
+
+<span class="gi">+   public Tablero() {}</span>
+<span class="gi">+</span>
+    public Tablero(Usuario administrador, String nombre) {
+       this.nombre = nombre;
+       this.administrador = administrador;
+    }
+
+<span class="gi">+   public Long getId() {</span>
+<span class="gi">+      return id;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+<span class="gi">+   public void setId(Long id) {</span>
+<span class="gi">+      this.id = id;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+    public String getNombre() {
+       return nombre;
+    }
+
+<span class="gi">+   public void setNombre(String nombre) {</span>
+<span class="gi">+      this.nombre = nombre;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+    public Usuario getAdministrador() {
+       return administrador;
+    }
+<span class="gi">+</span>
+<span class="gi">+   public void setAdministrador(Usuario usuario) {</span>
+<span class="gi">+      this.administrador = administrador;</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Y en el fichero <code>persistence.xml</code> debemos añadir la nueva clase entidad:</p>
+<p><strong>Cambios en el fichero <code>conf/META-INF/persistence.xml</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>       &lt;non-jta-data-source&gt;DBTest&lt;/non-jta-data-source&gt;
+       &lt;class&gt;models.Usuario&lt;/class&gt;
+       &lt;class&gt;models.Tarea&lt;/class&gt;
+<span class="gi">+      &lt;class&gt;models.Tablero&lt;/class&gt;</span>
+       &lt;properties&gt;
+          &lt;property name=&quot;hibernate.dialect&quot; value=&quot;org.hibernate.dialect.H2Dialect&quot;/&gt;
+          &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;update&quot;/&gt;
+...
+    &lt;non-jta-data-source&gt;DBTest&lt;/non-jta-data-source&gt;
+    &lt;class&gt;models.Usuario&lt;/class&gt;
+    &lt;class&gt;models.Tarea&lt;/class&gt;
+<span class="gi">+   &lt;class&gt;models.Tablero&lt;/class&gt;</span>
+    &lt;properties&gt;
+         &lt;property name=&quot;hibernate.dialect&quot; value=&quot;org.hibernate.dialect.MySQL5Dialect&quot;/&gt;
+         &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;update&quot;/&gt;
+...
+    &lt;non-jta-data-source&gt;DBTest&lt;/non-jta-data-source&gt;
+    &lt;class&gt;models.Usuario&lt;/class&gt;
+    &lt;class&gt;models.Tarea&lt;/class&gt;
+<span class="gi">+   &lt;class&gt;models.Tablero&lt;/class&gt;</span>
+    &lt;properties&gt;
+       &lt;property name=&quot;hibernate.dialect&quot; value=&quot;org.hibernate.dialect.MySQL5Dialect&quot;/&gt;
+       &lt;property name=&quot;hibernate.hbm2ddl.auto&quot; value=&quot;validate&quot;/&gt;
+</pre></div>
+</td></tr></table>
+
+<p>Realiza los cambios, reflexionando sobre lo que hacen, y comprueba que
+el test pasa.</p>
+<p>Ya puedes cerrar el commit, llamándolo por ejemplo <code>Añadida entidad
+Tablero</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git commit -m &quot;Añadida entidad Tablero&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-4-cuarto-test">Commit 4: Cuarto test<a class="headerlink" href="#commit-4-cuarto-test" title="Permanent link">&para;</a></h4>
+<p>Este cuarto test va a servir para crear la función <code>add()</code> en el
+<code>TableroRepository</code>.</p>
+<p>Añadimos el siguiente test:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> import models.TableroRepository;
+<span class="gi">+import models.UsuarioRepository;</span>
+
+ public class ModeloRepositorioTableroTest {
+    static private Injector injector;
+
+...
+
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testAddTableroInsertsDatabase() {</span>
+<span class="gi">+      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);</span>
+<span class="gi">+      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);</span>
+<span class="gi">+      Usuario administrador = new Usuario(&quot;juangutierrez&quot;, &quot;juangutierrez@gmail.com&quot;);</span>
+<span class="gi">+      administrador = usuarioRepository.add(administrador);</span>
+<span class="gi">+      Tablero tablero = new Tablero(administrador, &quot;Tablero 1&quot;);</span>
+<span class="gi">+      tablero = tableroRepository.add(tablero);</span>
+<span class="gi">+      assertNotNull(tablero.getId());</span>
+<span class="gi">+      assertEquals(&quot;Tablero 1&quot;, getNombreFromTableroDB(tablero.getId()));</span>
+<span class="gi">+   }</span>
+
+<span class="gi">+   private String getNombreFromTableroDB(Long tableroId) {</span>
+<span class="gi">+      Database db = injector.instanceOf(Database.class);</span>
+<span class="gi">+      String nombre = db.withConnection(connection -&gt; {</span>
+<span class="gi">+         String selectStatement = &quot;SELECT Nombre FROM Tablero WHERE ID = ? &quot;;</span>
+<span class="gi">+         PreparedStatement prepStmt = connection.prepareStatement(selectStatement);</span>
+<span class="gi">+         prepStmt.setLong(1, tableroId);</span>
+<span class="gi">+         ResultSet rs = prepStmt.executeQuery();</span>
+<span class="gi">+         rs.next();</span>
+<span class="gi">+         return rs.getString(&quot;Nombre&quot;);</span>
+<span class="gi">+      });</span>
+<span class="gi">+      return nombre;</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>El test fallará. Y escribimos el código para que pase:</p>
+<p><strong>Fichero <code>models/JPATableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>public class JPATableroRepository implements TableroRepository {
+    public JPATableroRepository(JPAApi api) {
+       this.jpaApi = api;
+    }
+<span class="gi">+</span>
+<span class="gi">+   public Tablero add(Tablero tablero) {</span>
+<span class="gi">+      return jpaApi.withTransaction(entityManager -&gt; {</span>
+<span class="gi">+         entityManager.persist(tablero);</span>
+<span class="gi">+         entityManager.flush();</span>
+<span class="gi">+         entityManager.refresh(tablero);</span>
+<span class="gi">+         return tablero;</span>
+<span class="gi">+      });</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p><strong>Fichero <code>models/TableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> @ImplementedBy(JPATableroRepository.class)
+ public interface TableroRepository {
+<span class="gi">+   public Tablero add(Tablero tablero);</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Comprueba que el test pasa.</p>
+<p>Si lanzas todos los tests, verás que algunos fallan. Esto es debido a
+que el test anterior introduce en la base de datos un usuario nuevo y
+un tablero con una clave ajena que lo referencia. Cuando DbUnit
+intenta limpiar la tabla de usuarios en otros tests se provoca un
+error <em>Referential integrity constraint violation</em> porque existe un
+tablero que se quedaría sin usuario administrador.</p>
+<p>La forma más fácil de solucionarlo es añadir al data set de DbUnit un
+elemento <code>&lt;Tablero/&gt;</code> para provocar que se borren todos los datos
+también de la tabla <code>Tablero</code>:</p>
+<p><strong>Fichero <code>test/resources/usuarios_dataset.xml</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> &lt;dataset&gt;
+     &lt;Usuario id=&quot;1000&quot; login=&quot;juangutierrez&quot; nombre=&quot;Juan&quot; apellidos=&quot;Gutierrez&quot;
+          password=&quot;123456789&quot; eMail=&quot;juan.gutierrez@gmail.com&quot; fechaNacimiento=&quot;1993-12-10&quot;/&gt;
+     &lt;Tarea id=&quot;1000&quot; titulo=&quot;Renovar DNI&quot; usuarioId=&quot;1000&quot;/&gt;
+     &lt;Tarea id=&quot;1001&quot; titulo=&quot;Práctica 1 MADS&quot; usuarioId=&quot;1000&quot;/&gt;
+<span class="gi">+    &lt;Tablero/&gt;</span>
+  &lt;/dataset&gt;
+</pre></div>
+</td></tr></table>
+
+<p>Por último, refactoriza el código para eliminar duplicidad de la
+inicialización de la variable <code>db</code> en dos tests. Mueve esa
+inicialización al método <code>@BeforeClass</code>.</p>
+<p>Realiza un nuevo commit:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git commit -m &quot;Añadido método add() en TableroRepository&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-5-refactorizacion">Commit 5: Refactorización<a class="headerlink" href="#commit-5-refactorizacion" title="Permanent link">&para;</a></h4>
+<p>Vamos ahora a hacer un commit en el que vamos a refactorizar el código
+para arreglar un par de problemas. Los tests nos servirán para
+comprobar que no se introduce ningún error.</p>
+<h5 id="transformacion-list-en-set">Transformación <code>List</code> en <code>Set</code><a class="headerlink" href="#transformacion-list-en-set" title="Permanent link">&para;</a></h5>
+<p>En primer lugar vamos a arreglar un error que hemos cometido al
+definir las entidades. Realiza una refactorización en la que deberás
+convertir el tipo del atributo <code>tareas</code> de <code>Usuario</code> de tipo <code>List</code> a
+tipo <code>Set</code>.</p>
+<p>Deberá quedar como sigue:</p>
+<p><strong>Fichero <code>models/Usuario.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gd">- import java.util.List;</span>
+<span class="gd">- import java.util.ArrayList;</span>
+<span class="gi">+ import java.util.Set;</span>
+<span class="gi">+ import java.util.HashSet;</span>
+
+<span class="gu">@Entity</span>
+public class Usuario {
+   ...
+   private Date fechaNacimiento;
+   // Relación uno-a-muchos entre usuario y tarea
+   @OneToMany(mappedBy=&quot;usuario&quot;, fetch=FetchType.EAGER)
+<span class="gd">-  public List&lt;Tarea&gt; tareas = new &lt;Tarea&gt;();</span>
+<span class="gi">+  public Set&lt;Tarea&gt; tareas = new HashSet&lt;Tarea&gt;();</span>
+   ...
+</pre></div>
+</td></tr></table>
+
+<p>La razón de la refactorización es que es más correcto definir las
+colecciones de los atributos de las entidades del tipo <code>Set</code> porque
+eso garantiza que no habrá elementos repetidos en las
+colecciones. </p>
+<p>Realiza todos los cambios necesarios y asegúrate de que se siguen
+pasando todos los tests.</p>
+<h5 id="conversion-de-long-a-long">Conversión de <code>Long</code> a <code>long</code><a class="headerlink" href="#conversion-de-long-a-long" title="Permanent link">&para;</a></h5>
+<p>Para corregir otro error que no han detectado los tests debemos
+realizar la siguiente refactorización: en los métodos <code>equals</code> de
+<code>Tarea</code> y <code>Usuario</code> hacer una conversión de <code>Long</code> a <code>long</code>, para que
+realmente detecte como iguales dos identificadores iguales (el
+método <code>==</code> compara referencias). </p>
+<p>Para comprobar que el código tenía el error modificamos el test
+<code>testEqualsTareasConId</code> del fichero <code>TareaTest.java</code>:</p>
+<p><strong>Fichero <code>test/models/TareaTest.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   // Test #14: testEqualsTareasConId
+   @Test
+   public void testEqualsTareasConId() {
+      Usuario usuario = new Usuario(&quot;juangutierrez&quot;, &quot;juangutierrez@gmail.com&quot;);
+      Tarea tarea1 = new Tarea(usuario, &quot;Práctica 1 de MADS&quot;);
+      Tarea tarea2 = new Tarea(usuario, &quot;Renovar DNI&quot;);
+      Tarea tarea3 = new Tarea(usuario, &quot;Pagar el alquiler&quot;);
+<span class="gd">-     tarea1.setId(1L);</span>
+<span class="gd">-     tarea2.setId(1L);</span>
+<span class="gi">+     tarea1.setId(1000L);</span>
+<span class="gi">+     tarea2.setId(1000L);</span>
+      tarea3.setId(2L);
+      assertEquals(tarea1, tarea2);
+      assertNotEquals(tarea1, tarea3);
+   }
+</pre></div>
+</td></tr></table>
+
+<p>Si lanzamos el test comprobaremos que dos tareas que deberían ser
+iguales porque tienen el mismo identificador, son detectadas como
+distintas.</p>
+<p>Para conseguir hacer pasar el test debemos cambiar en el modelo
+<code>Tarea.java</code> el siguiente código del método equals:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>      // Si tenemos los ID, comparamos por ID
+      if (id != null &amp;&amp; other.id != null)
+<span class="gd">-     return (id == other.id);</span>
+<span class="gi">+     return ((long) id == (long) other.id);</span>
+      // sino comparamos por campos obligatorios      
+</pre></div>
+</td></tr></table>
+
+<p>Comprobamos que el test ahora sí que pasa correctamente.</p>
+<p>Hacemos el mismo cambio en la clase <code>Usuario.java</code>, que contiene el
+mismo error (aunque no lo hay ningún test que lo compruebe) y añadimos
+el commit:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git commit -m &quot;Refactorizados List y equals&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-6-quinto-test">Commit 6: Quinto test<a class="headerlink" href="#commit-6-quinto-test" title="Permanent link">&para;</a></h4>
+<p>Vamos a por el siguiente test, en el que haremos posible que un
+usuario pueda administrar varios tableros.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    }
+       });
+       return nombre;
+    }
+<span class="gi">+</span>
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testUsuarioAdministraVariosTableros() {</span>
+<span class="gi">+      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);</span>
+<span class="gi">+      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);</span>
+<span class="gi">+      Usuario administrador = new Usuario(&quot;juangutierrez&quot;, &quot;juangutierrez@gmail.com&quot;);</span>
+<span class="gi">+      administrador = usuarioRepository.add(administrador);</span>
+<span class="gi">+      Tablero tablero1 = new Tablero(administrador, &quot;Tablero 1&quot;);</span>
+<span class="gi">+      tableroRepository.add(tablero1);</span>
+<span class="gi">+      Tablero tablero2 = new Tablero(administrador, &quot;Tablero 2&quot;);</span>
+<span class="gi">+      tableroRepository.add(tablero2);</span>
+<span class="gi">+      // Recuperamos el administrador del repository</span>
+<span class="gi">+      administrador = usuarioRepository.findById(administrador.getId());</span>
+<span class="gi">+      // Y comprobamos si tiene los tableros</span>
+<span class="gi">+      assertEquals(2, administrador.getAdministrados().size());</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Y añadimos el código para conseguir que pase:</p>
+<p><strong>Fichero <code>models/Usuario.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>public class Usuario {
+    // Relación uno-a-muchos entre usuario y tarea
+    @OneToMany(mappedBy=&quot;usuario&quot;, fetch=FetchType.EAGER)
+    private Set&lt;Tarea&gt; tareas = new HashSet&lt;Tarea&gt;();
+<span class="gi">+   @OneToMany(mappedBy=&quot;administrador&quot;, fetch=FetchType.EAGER)</span>
+<span class="gi">+   private Set&lt;Tablero&gt; administrados = new HashSet&lt;Tablero&gt;();</span>
+
+    // Un constructor vacío necesario para JPA
+    public Usuario() {}
+...
+    public class Usuario {
+       this.tareas = tareas;
+    }
+
+<span class="gi">+   public Set&lt;Tablero&gt; getAdministrados() {</span>
+<span class="gi">+      return administrados;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+<span class="gi">+   public void setAdministrados(Set&lt;Tablero&gt; administrados) {</span>
+<span class="gi">+      this.administrados = administrados;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+</pre></div>
+</td></tr></table>
+
+<p>Una vez que compruebes que el test funciona correctamente, debes
+confirmar los cambios:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git commit -m &quot;Un usuario puede administrar varios tableros&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="commit-7-sexto-y-ultimo-test">Commit 7: Sexto y último test<a class="headerlink" href="#commit-7-sexto-y-ultimo-test" title="Permanent link">&para;</a></h4>
+<p>Vamos por último a añadir la funcionalidad de que los usuarios puedan
+participar en tableros y los tableros tienen varios participantes
+(además del administrador).</p>
+<p>Empezamos con el siguiente test, en el que usamos DbUnit, para probar
+la posibilidad de que un usuario pueda tener varios tableros
+asociados:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>import java.sql.*;
+
+<span class="gi">+import java.util.Set;</span>
+<span class="gi">+</span>
+<span class="gi">+import play.db.jpa.*;</span>
+<span class="gi">+</span>
+<span class="gi">+import org.dbunit.*;</span>
+<span class="gi">+import org.dbunit.dataset.*;</span>
+<span class="gi">+import org.dbunit.dataset.xml.*;</span>
+<span class="gi">+import org.dbunit.operation.*;</span>
+<span class="gi">+import java.io.FileInputStream;</span>
+
+...
+
+<span class="gi">+</span>
+<span class="gi">+   private void initDataSet() throws Exception {</span>
+<span class="gi">+      JndiDatabaseTester databaseTester = new JndiDatabaseTester(&quot;DBTest&quot;);</span>
+<span class="gi">+      IDataSet initialDataSet = new FlatXmlDataSetBuilder().build(new FileInputStream(&quot;test/resources/usuarios_dataset.xml&quot;));</span>
+<span class="gi">+      databaseTester.setDataSet(initialDataSet);</span>
+<span class="gi">+      databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);</span>
+<span class="gi">+      databaseTester.onSetup();</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testUsuarioParticipaEnVariosTableros() throws Exception {</span>
+<span class="gi">+      initDataSet();</span>
+<span class="gi">+      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);</span>
+<span class="gi">+      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);</span>
+<span class="gi">+      Usuario admin = usuarioRepository.findById(1000L);</span>
+<span class="gi">+      Usuario usuario = usuarioRepository.findById(1001L);</span>
+<span class="gi">+      Set&lt;Tablero&gt; tableros = admin.getAdministrados();</span>
+<span class="gi">+      // Tras cargar los datos del dataset el usuario2 no tiene ningún</span>
+<span class="gi">+      // tablero asociado y el usuario 1 tiene 2 tableros administrados</span>
+<span class="gi">+      assertEquals(0, usuario.getTableros().size());</span>
+<span class="gi">+      assertEquals(2, tableros.size());</span>
+<span class="gi">+      for (Tablero tablero : tableros) {</span>
+<span class="gi">+         // Actualizamos la relación en memoria, añadiendo el usuario</span>
+<span class="gi">+         // al tablero</span>
+<span class="gi">+         tablero.getParticipantes().add(usuario);</span>
+<span class="gi">+         // Actualizamos la base de datos llamando al repository</span>
+<span class="gi">+         tableroRepository.update(tablero);</span>
+<span class="gi">+      }</span>
+<span class="gi">+      // Comprobamos que se ha actualizado la relación en la BD y</span>
+<span class="gi">+      // el usuario pertenece a los dos tableros a los que le hemos añadido</span>
+<span class="gi">+      usuario = usuarioRepository.findById(1001L);</span>
+<span class="gi">+      Set&lt;Tablero&gt; tablerosUsuario = usuario.getTableros();</span>
+<span class="gi">+      assertEquals(2, tablerosUsuario.size());</span>
+<span class="gi">+      for (Tablero tablero: tableros) {</span>
+<span class="gi">+         assertTrue(tablerosUsuario.contains(tablero));</span>
+<span class="gi">+      }</span>
+<span class="gi">+   }</span>
+</pre></div>
+</td></tr></table>
+
+<p>Añadimos en el data set de DbUnit lo siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> &lt;dataset&gt;
+     &lt;Usuario id=&quot;1000&quot; login=&quot;juangutierrez&quot; nombre=&quot;Juan&quot; apellidos=&quot;Gutierrez&quot;
+          password=&quot;123456789&quot; eMail=&quot;juan.gutierrez@gmail.com&quot; fechaNacimiento=&quot;1993-12-10&quot;/&gt;
+<span class="gi">+    &lt;Usuario id=&quot;1001&quot; login=&quot;juangutierrez2&quot; nombre=&quot;Juan&quot; apellidos=&quot;Gutierrez Dos&quot;</span>
+<span class="gi">+         password=&quot;123456789&quot; eMail=&quot;juan.gutierrez@gmail.com&quot; fechaNacimiento=&quot;1993-12-10&quot;/&gt;</span>
+<span class="gi">+    &lt;Usuario id=&quot;1002&quot; login=&quot;juangutierrez3&quot; nombre=&quot;Juan&quot; apellidos=&quot;Gutierrez Tres&quot;</span>
+<span class="gi">+         password=&quot;123456789&quot; eMail=&quot;juan.gutierrez@gmail.com&quot; fechaNacimiento=&quot;1993-12-10&quot;/&gt;</span>
+     &lt;Tarea id=&quot;1000&quot; titulo=&quot;Renovar DNI&quot; usuarioId=&quot;1000&quot;/&gt;
+     &lt;Tarea id=&quot;1001&quot; titulo=&quot;Práctica 1 MADS&quot; usuarioId=&quot;1000&quot;/&gt;
+<span class="gd">-    &lt;Tablero/&gt;</span>
+<span class="gi">+    &lt;Tablero id=&quot;1000&quot; nombre=&quot;Tablero test 1&quot; administradorId=&quot;1000&quot;/&gt;</span>
+<span class="gi">+    &lt;Tablero id=&quot;1001&quot; nombre=&quot;Tablero test 2&quot; administradorId=&quot;1000&quot;/&gt;</span>
+  &lt;/dataset&gt;
+</pre></div>
+</td></tr></table>
+
+<p>Estamos añadiendo dos usuarios nuevos y dos tableros, estos últimos
+administrados por el usuario 1000 (<code>juangutierrez</code>).</p>
+<p>Vamos a codificar lo necesario para que el test pase. El test
+anterior comprueba que un usuario pueda tener varios tableros y,
+aplicando TDD de forma estricta, sólo deberíamos codificar la relación
+<code>ONE_TO_MANY</code>. Sin embargo, como es muy sencillo introducir
+directamente la relación <code>MANY_TO_MANY</code> que necesitamos nos saltamos
+la regla de TDD de introducir un único test y añadimos el siguiente test:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gi">+</span>
+<span class="gi">+   @Test</span>
+<span class="gi">+   public void testTableroTieneVariosUsuarios() throws Exception {</span>
+<span class="gi">+      initDataSet();</span>
+<span class="gi">+      UsuarioRepository usuarioRepository = injector.instanceOf(UsuarioRepository.class);</span>
+<span class="gi">+      TableroRepository tableroRepository = injector.instanceOf(TableroRepository.class);</span>
+<span class="gi">+      // Obtenemos datos del dataset</span>
+<span class="gi">+      Tablero tablero = tableroRepository.findById(1000L);</span>
+<span class="gi">+      Usuario usuario1 = usuarioRepository.findById(1000L);</span>
+<span class="gi">+      Usuario usuario2 = usuarioRepository.findById(1001L);</span>
+<span class="gi">+      Usuario usuario3 = usuarioRepository.findById(1002L);</span>
+<span class="gi">+      assertEquals(0, tablero.getParticipantes().size());</span>
+<span class="gi">+      assertEquals(0, usuario1.getTableros().size());</span>
+<span class="gi">+      // Añadimos los 3 usuarios al tablero</span>
+<span class="gi">+      tablero.getParticipantes().add(usuario1);</span>
+<span class="gi">+      tablero.getParticipantes().add(usuario2);</span>
+<span class="gi">+      tablero.getParticipantes().add(usuario3);</span>
+<span class="gi">+      tableroRepository.update(tablero);</span>
+<span class="gi">+      // Comprobamos que los datos se han actualizado</span>
+<span class="gi">+      tablero = tableroRepository.findById(1000L);</span>
+<span class="gi">+      usuario1 = usuarioRepository.findById(1000L);</span>
+<span class="gi">+      assertEquals(3, tablero.getParticipantes().size());</span>
+<span class="gi">+      assertEquals(1, usuario1.getTableros().size());</span>
+<span class="gi">+      assertTrue(tablero.getParticipantes().contains(usuario1));</span>
+<span class="gi">+      assertTrue(usuario1.getTableros().contains(tablero));</span>
+<span class="gi">+   }</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>En este test añadimos tres usuarios a un tablero y después comprobamos
+que los datos se han actualizado correctamente al recuperar el tablero
+del <code>tableroRepository</code>.</p>
+<p>Vamos entonces a escribir el código que haga pasar estos dos tests.</p>
+<p>Empezamos por el modelo, añadiendo la relación <code>MANY_TO_MANY</code> en
+<code>Usuario</code> y <code>Tablero</code>:</p>
+<p><strong>Fichero <code>models/Usuario.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    private Date fechaNacimiento;
+    // Relación uno-a-muchos entre usuario y tarea
+    @OneToMany(mappedBy=&quot;usuario&quot;, fetch=FetchType.EAGER)
+    private Set&lt;Tarea&gt; tareas = new HashSet&lt;Tarea&gt;();
+    @OneToMany(mappedBy=&quot;administrador&quot;, fetch=FetchType.EAGER)
+    private Set&lt;Tablero&gt; administrados = new HashSet&lt;Tablero&gt;();
+<span class="gi">+   @ManyToMany(mappedBy=&quot;participantes&quot;, fetch=FetchType.EAGER)</span>
+<span class="gi">+   private Set&lt;Tablero&gt; tableros = new HashSet&lt;Tablero&gt;();</span>
+
+    // Un constructor vacío necesario para JPA
+    public Usuario() {}
+
+...
+
+        this.administrados = administrados;
+     }
+
+<span class="gi">+   public Set&lt;Tablero&gt; getTableros() {</span>
+<span class="gi">+      return tableros;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+<span class="gi">+   public void setTableros(Set&lt;Tablero&gt; tableros) {</span>
+<span class="gi">+      this.tableros = tableros;</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+    public String toString() {
+       String fechaStr = null;
+       if (fechaNacimiento != null) {
+</pre></div>
+</td></tr></table>
+
+<p>En el modelo <code>Tablero</code> añadimos la relación y los métodos <code>hashCode</code> y
+<code>equals</code> necesarios para comparar tableros y buscar tableros en
+colecciones (sin ese método no funciona correctamente la llamada a
+<code>contains</code> del primer test):</p>
+<p><strong>Fichero <code>models/Tablero.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="kn">import</span> <span class="nn">javax.persistence.*</span><span class="o">;</span>
+
+<span class="o">+</span><span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="o">+</span><span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="o">;</span>
+<span class="o">+</span>
+ <span class="nd">@Entity</span>
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tablero</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+<span class="o">...</span>
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;administradorId&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Usuario</span> <span class="n">administrador</span><span class="o">;</span>
+<span class="o">+</span>   <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">fetch</span><span class="o">=</span><span class="n">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
+<span class="o">+</span>   <span class="nd">@JoinTable</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Persona_Tablero&quot;</span><span class="o">)</span>
+<span class="o">+</span>   <span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span> <span class="n">participantes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">Tablero</span><span class="o">()</span> <span class="o">{}</span>
+
+<span class="o">...</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAdministrador</span><span class="o">(</span><span class="n">Usuario</span> <span class="n">usuario</span><span class="o">)</span> <span class="o">{</span>
+       <span class="k">this</span><span class="o">.</span><span class="na">administrador</span> <span class="o">=</span> <span class="n">administrador</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">+</span>
+<span class="o">+</span>   <span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span> <span class="nf">getParticipantes</span><span class="o">()</span> <span class="o">{</span>
+<span class="o">+</span>      <span class="k">return</span> <span class="n">participantes</span><span class="o">;</span>
+<span class="o">+</span>   <span class="o">}</span>
+<span class="o">+</span>
+<span class="o">+</span>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParticipantes</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span> <span class="n">participantes</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">+</span>      <span class="k">this</span><span class="o">.</span><span class="na">participantes</span> <span class="o">=</span> <span class="n">participantes</span><span class="o">;</span>
+<span class="o">+</span>   <span class="o">}</span>
+<span class="o">+</span>
+<span class="o">+</span>   <span class="nd">@Override</span>
+<span class="o">+</span>   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+<span class="o">+</span>      <span class="kd">final</span> <span class="kt">int</span> <span class="n">prime</span> <span class="o">=</span> <span class="mi">31</span><span class="o">;</span>
+<span class="o">+</span>      <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">prime</span> <span class="o">+</span> <span class="o">((</span><span class="n">nombre</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">nombre</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+<span class="o">+</span>      <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="o">((</span><span class="n">administrador</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">administrador</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+<span class="o">+</span>      <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">+</span>   <span class="o">}</span>
+<span class="o">+</span>
+<span class="o">+</span>   <span class="nd">@Override</span>
+<span class="o">+</span>   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">+</span>      <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">obj</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">+</span>      <span class="k">if</span> <span class="o">(</span><span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">+</span>      <span class="n">Tablero</span> <span class="n">other</span> <span class="o">=</span> <span class="o">(</span><span class="n">Tablero</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
+<span class="o">+</span>      <span class="c1">// Si tenemos los ID, comparamos por ID</span>
+<span class="o">+</span>      <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">other</span><span class="o">.</span><span class="na">id</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+<span class="o">+</span>         <span class="k">return</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">id</span> <span class="o">==</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="n">other</span><span class="o">.</span><span class="na">id</span><span class="o">);</span>
+<span class="o">+</span>      <span class="c1">// sino comparamos por campos obligatorios</span>
+<span class="o">+</span>      <span class="k">else</span> <span class="o">{</span>
+<span class="o">+</span>         <span class="k">if</span> <span class="o">(</span><span class="n">nombre</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">+</span>            <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">nombre</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">+</span>         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="n">nombre</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">nombre</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">+</span>         <span class="k">if</span> <span class="o">(</span><span class="n">administrador</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">+</span>            <span class="k">if</span> <span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">administrador</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">+</span>            <span class="k">else</span> <span class="k">if</span> <span class="o">(!</span><span class="n">administrador</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">administrador</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">+</span>         <span class="o">}</span>
+<span class="o">+</span>      <span class="o">}</span>
+<span class="o">+</span>      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">+</span>   <span class="o">}</span>
+ <span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Necesitamos también añadir los métodos <code>update</code> y <code>findById</code> en la
+interfaz <code>TableroRepository</code>:</p>
+<p><strong>Fichero <code>models/TableroRepository.java</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gu">@ImplementedBy(JPATableroRepository.class)</span>
+ public interface TableroRepository {
+    public Tablero add(Tablero tablero);
+<span class="gi">+   public Tablero update(Tablero tablero);</span>
+<span class="gi">+   public Tablero findById(Long idTablero);</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Y su implementación en <code>JPATableroRepository.java</code>**:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gi">+</span>
+<span class="gi">+   public Tablero update(Tablero tablero) {</span>
+<span class="gi">+      return jpaApi.withTransaction(entityManager -&gt; {</span>
+<span class="gi">+         Tablero actualizado = entityManager.merge(tablero);</span>
+<span class="gi">+         return actualizado;</span>
+<span class="gi">+      });</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+<span class="gi">+   public Tablero findById(Long idTablero) {</span>
+<span class="gi">+      return jpaApi.withTransaction(entityManager -&gt; {</span>
+<span class="gi">+         return entityManager.find(Tablero.class, idTablero);</span>
+<span class="gi">+      });</span>
+<span class="gi">+   }</span>
+<span class="gi">+</span>
+ }
+</pre></div>
+</td></tr></table>
+
+<p>Lanzamos los tests y comprobamos que todo funciona correctamente.</p>
+<p>Antes de hacer el commit es necesario añadir en el fichero
+<code>usuarios_dataset.xml</code> la línea para limpiar la nueva tabla que genera
+la relación <code>MANY_TO_MANY</code>. Si no se añade, fallarán las siguientes
+ejecuciones de los tests.</p>
+<p><strong>Fichero <code>test/resources/usuarios_dataset.xml</code></strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>     &lt;Tablero id=&quot;1001&quot; nombre=&quot;Tablero test 2&quot; administradorId=&quot;1000&quot;/&gt;
+<span class="gi">+    &lt;Persona_Tablero/&gt;</span>
+  &lt;/dataset&gt;
+</pre></div>
+</td></tr></table>
+
+<p>Hacemos el commit y subimos la rama para crear el pull request:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add .
+$ git commit -m &quot;Relación muchos a muchos entre usuarios y tableros&quot;
+$ git push -u origin modelo-tablero
+</pre></div>
+</td></tr></table>
+
+<p>En GitHub creamos el pull request con la rama.</p>
+<h3 id="42-tests-de-integracion-antes-de-cerrar-el-issue-y-confirmar-el-pull-request">4.2. Tests de integración antes de cerrar el <em>issue</em> y confirmar el pull request<a class="headerlink" href="#42-tests-de-integracion-antes-de-cerrar-el-issue-y-confirmar-el-pull-request" title="Permanent link">&para;</a></h3>
+<p>Con los commits anteriores hemos terminado de codificar el
+<em>issue</em>. Una vez que hemos creado el pull request en GitHub, antes de
+aceptarlo, debemos <strong>comprobar que funciona correctamente la
+integración con <code>master</code></strong>. </p>
+<p>GitHub nos informa si el PR tiene algún conflicto con <code>master</code>.
+En ese caso deberíamos también resolverlos.</p>
+<p>Para ello debemos hacer lo siguiente:</p>
+<ol>
+<li>Hacer un merge de <code>master</code> en la rama del <em>issue</em>. En este merge
+   pueden producirse conflictos que deberemos arreglar.</li>
+<li>Una vez realizado el merge comprobar que pasan los tests de
+   integración y de <em>stage</em>. Si el esquema de datos ha cambiado,
+   obtener el nuevo esquema y aplicar los cambios en la base de datos
+   de <em>stage</em>.</li>
+<li>Aceptar el pull request: subir los nuevos commits al pull request,
+   confirmarlo para realizar la integración con <code>master</code> en remoto y
+   actualizar la rama <code>master</code> local.</li>
+</ol>
+<h4 id="merge-con-la-rama-master">Merge con la rama master<a class="headerlink" href="#merge-con-la-rama-master" title="Permanent link">&para;</a></h4>
+<p>Mezclamos la rama <code>master</code> con la rama actual del <em>issue</em>. Pero antes
+de ello debemos actualizar <code>master</code> para descargar los cambios que se
+hayan podido subir a remoto. Aunque en este caso no habrá ningún
+cambio, este paso es muy importante cuando estemos trabajando en
+equipo y haya múltiples <em>issues</em> integrándose simultáneamente. Una vez
+actualizado <code>master</code> volvemos a la rama <code>modelo-tablero</code> y realizamos
+el merge de <code>master</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git checkout master
+$ git pull
+$ git checkout modelo-tablero
+$ git merge master
+</pre></div>
+</td></tr></table>
+
+<p>Puede que no sea posible realizar el <em>merge</em> porque git detecta algún
+conflicto. Aparecería un mensaje como el siguiente:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git merge master
+Auto-merging app/services/TareaService.java
+CONFLICT (content): Merge conflict in app/services/TareaService.java
+Auto-merging app/models/Usuario.java
+CONFLICT (content): Merge conflict in app/models/Usuario.java
+</pre></div>
+</td></tr></table>
+
+<p>Debes solucionarlo siguiendo las instrucciones que aparecen en el <code>git
+status</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git status
+On branch modelo-tablero
+Your branch is up-to-date with &#39;solucion/modelo-tablero&#39;.
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Changes to be committed:
+
+    modified:   test/models/TareaTest.java
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+
+    both modified:   app/models/Usuario.java
+    both modified:   app/services/TareaService.java
+</pre></div>
+</td></tr></table>
+
+<p>Debes editar los ficheros en los que haya conflicto. Verás que git ha
+modificado los ficheros incluyendo marcas que indican las líneas que
+están en conflicto. Edita las líneas para dejar el fichero como te
+interesa y sálvalo.</p>
+<p>Una vez arreglados los conflictos hay que informar a git de esta
+resolución. Como indica el <code>git status</code> debemos hacer un
+<code>git add</code> de los ficheros en los que hemos resuelto los conflictos:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add app/models/Usuario.java
+$ git add app/services/TareaService.java
+</pre></div>
+</td></tr></table>
+
+<p>Si hacemos ahora un <code>git status</code> git nos explica cómo continuar:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git status
+On branch modelo-tablero
+Your branch is up-to-date with &#39;solucion/modelo-tablero2&#39;.
+All conflicts fixed but you are still merging.
+  (use &quot;git commit&quot; to conclude merge)
+
+Changes to be committed:
+
+    modified:   app/services/TareaService.java
+    modified:   test/models/TareaTest.java
+</pre></div>
+</td></tr></table>
+
+<p>Nos dice que debemos hacer un commit para concluir el merge. Hacemos
+después un <code>push</code> para subirlo a GitHub:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git commit -m &quot;Solucionados conflictos&quot;
+$ git push
+</pre></div>
+</td></tr></table>
+
+<p>Veremos en GitHub que el pull request se actualiza con el nuevo commit
+y que ya no aparecen conflictos con master.</p>
+<p>En el caso en que no hayan aparecido conflictos no es necesario hacer
+un <code>push</code> a GitHub (no hay cambios añadidos en la rama).</p>
+<h4 id="tests-de-integracion">Tests de integración<a class="headerlink" href="#tests-de-integracion" title="Permanent link">&para;</a></h4>
+<p>Una vez realizada la integración de master en la rama del <em>issue</em>
+debes lanzar los tests de integración tal y como se explica en el
+apartado 3.1.</p>
+<p>Si aparece algún error debes solucionarlo, crear un nuevo commit y
+subirlo a GitHub.</p>
+<p>En nuestro caso uno de los errores que aparecerán está relacionado con
+cómo se almacenan los nombres de las tablas en la base de datos H2
+(memoria) y MySQL. Una de las bases de datos las guarda en mayúsculas
+y la otra no.</p>
+<p>Debes modificar el test <code>testCrearTableTableroEnBD</code> para contemplar
+las dos posibilidades:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   @Test
+   public void testCrearTablaTableroEnBD() throws Exception {
+      Database db = injector.instanceOf(Database.class);
+      Connection connection = db.getConnection();
+      DatabaseMetaData meta = connection.getMetaData();
+<span class="gd">-     ResultSet resH2 = meta.getTables(null, null, &quot;TABLERO&quot;, new String[] {&quot;TABLE&quot;});</span>
+<span class="gi">+     // En la BD H2 el nombre de las tablas se define con mayúscula y en</span>
+<span class="gi">+     // MySQL con minúscula</span>
+<span class="gi">+     ResultSet resH2 = meta.getTables(null, null, &quot;TABLERO&quot;, new String[] {&quot;TABLE&quot;});</span>
+<span class="gi">+     ResultSet resMySQL = meta.getTables(null, null, &quot;Tablero&quot;, new String[] {&quot;TABLE&quot;});</span>
+<span class="gi">+     boolean existeTabla = resH2.next() || resMySQL.next();</span>
+      assertTrue(existeTabla);
+   }
+</pre></div>
+</td></tr></table>
+
+<p>Una vez que los tests de integración funcionan, generamos la tabla con
+el esquema de datos (<code>schema.sql</code>) tal y como se explica en el
+apartado 3.1 y la copiamos en el directorio correspondiente del
+proyecto (<code>sql/schema.sql</code>).</p>
+<p>Si hay algún cambio en el esquema git los detectará. Podemos comprobar
+los cambios haciendo un <code>git diff</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="gd">--</span>
+<span class="gi">+-- Table structure for table `Persona_Tablero`</span>
+<span class="gi">+--</span>
+<span class="gi">+</span>
+<span class="gi">+DROP TABLE IF EXISTS `Persona_Tablero`;</span>
+<span class="gi">+/*!40101 SET @saved_cs_client     = @@character_set_client */;</span>
+<span class="gi">+/*!40101 SET character_set_client = utf8 */;</span>
+<span class="gi">+CREATE TABLE `Persona_Tablero` (</span>
+<span class="gi">+  `tableros_id` bigint(20) NOT NULL,</span>
+<span class="gi">+  `participantes_id` bigint(20) NOT NULL,</span>
+<span class="gi">+  KEY `FKnghbrhyh7eal30o78h3293n72` (`participantes_id`),</span>
+<span class="gi">+  KEY `FKbpw5yq3ofgud0ra8a916kddjm` (`tableros_id`),</span>
+<span class="gi">+  CONSTRAINT `FKbpw5yq3ofgud0ra8a916kddjm` FOREIGN KEY (`tableros_id`) REFERENCES `Tablero` (`id`),</span>
+<span class="gi">+  CONSTRAINT `FKnghbrhyh7eal30o78h3293n72` FOREIGN KEY (`participantes_id`) REFERENCES `Usuario` (`id`)</span>
+<span class="gi">+) ENGINE=InnoDB DEFAULT CHARSET=latin1;</span>
+<span class="gi">+/*!40101 SET character_set_client = @saved_cs_client */;</span>
+<span class="gi">+</span>
+<span class="gi">+--</span>
+<span class="gi">+-- Table structure for table `Tablero`</span>
+<span class="gi">+--</span>
+<span class="gi">+</span>
+<span class="gi">+DROP TABLE IF EXISTS `Tablero`;</span>
+<span class="gi">+/*!40101 SET @saved_cs_client     = @@character_set_client */;</span>
+<span class="gi">+/*!40101 SET character_set_client = utf8 */;</span>
+<span class="gi">+CREATE TABLE `Tablero` (</span>
+<span class="gi">+  `id` bigint(20) NOT NULL,</span>
+<span class="gi">+  `nombre` varchar(255) DEFAULT NULL,</span>
+<span class="gi">+  `administradorId` bigint(20) DEFAULT NULL,</span>
+<span class="gi">+  PRIMARY KEY (`id`),</span>
+<span class="gi">+  KEY `FKq82919iay2b8h77msdj8289p0` (`administradorId`),</span>
+<span class="gi">+  CONSTRAINT `FKq82919iay2b8h77msdj8289p0` FOREIGN KEY (`administradorId`) REFERENCES `Usuario` (`id`)</span>
+<span class="gi">+) ENGINE=InnoDB DEFAULT CHARSET=latin1;</span>
+<span class="gi">+/*!40101 SET character_set_client = @saved_cs_client */;</span>
+<span class="gi">+</span>
+<span class="gi">+--</span>
+</pre></div>
+</td></tr></table>
+
+<p>En este caso los cambios consisten en las dos tablas nuevas
+añadidas. Una para la entidad <code>Tablero</code> y otra para mantener la
+relación <code>MANY_TO_MANY</code> con <code>Usuario</code>.</p>
+<p>Añadimos los cambios del esquema con un commit y los subimos a GitHub:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git add sql/schema.sql
+$ git commit -m &quot;Cambios en el esquema SQL&quot;
+$ git push
+</pre></div>
+</td></tr></table>
+
+<h5 id="tests-de-stage">Tests de stage<a class="headerlink" href="#tests-de-stage" title="Permanent link">&para;</a></h5>
+<p>Si lanzamos ahora el entorno <em>stage</em> tal y como explicamos en el
+apartado 3.2 comprobaremos que la aplicación no funciona, porque el
+esquema guardado no se corresponde con el de la aplicación.</p>
+<p>Debemos crear un <strong>script de actualización</strong> de la base de datos a partir
+de los cambios observados en el apartado anterior.</p>
+<p>En nuestro caso el script consistirá en las mismas sentencias SQL para
+crear las nuevas tablas. En otros casos tendrás que hacer un <code>ALTER
+TABLE</code> para actualizar tablas ya existentes con nuevas columnas.</p>
+<p>Llamamos al fichero <code>Upgrade.sql</code>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET NAMES utf8 */</span><span class="p">;</span>
+<span class="cm">/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */</span><span class="p">;</span>
+<span class="cm">/*!40103 SET TIME_ZONE=&#39;+00:00&#39; */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */</span><span class="p">;</span>
+<span class="cm">/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */</span><span class="p">;</span>
+<span class="cm">/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=&#39;NO_AUTO_VALUE_ON_ZERO&#39; */</span><span class="p">;</span>
+<span class="cm">/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Persona_Tablero</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">tableros_id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">participantes_id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">FKnghbrhyh7eal30o78h3293n72</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">participantes_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">FKbpw5yq3ofgud0ra8a916kddjm</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">tableros_id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FKbpw5yq3ofgud0ra8a916kddjm</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">tableros_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">Tablero</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FKnghbrhyh7eal30o78h3293n72</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">participantes_id</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">Usuario</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Tablero</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">nombre</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">administradorId</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">FKq82919iay2b8h77msdj8289p0</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">administradorId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">FKq82919iay2b8h77msdj8289p0</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">administradorId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">Usuario</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>La línea </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cm">/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>es importante porque le indica a MySQL que no chequee la existencia de
+claves ajenas al crear las tablas. De esta forma podemos crearlas en
+el orden en el que aparecen.</p>
+<p>Guardamos el fichero <code>upgrade.sql</code> en el mismo directorio <code>stage</code> en
+el que está el fichero <code>schema.sql</code> con el backup de los datos
+de anteriores ejecuciones de pruebas funcionales en el directorio.</p>
+<p>Al arrancar el contenedor docker MySQL de <em>stage</em> (ver apartado 3.2) se
+cargarán los ficheros SQL en orden alfabético, de forma que primero se
+cargarán los datos anteriores (fichero <code>schema.sql</code>) y después se
+realizará la actualización (fichero <code>upgrade.sql</code>).</p>
+<p>Arrancamos la aplicación Play en modo <em>stage</em> (ver apartado 3.2) y
+comprobamos que todo funciona correctamente.</p>
+<p>Por último añadimos el fichero <code>upgrade.sql</code> al proyecto en el
+directorio SQL, llamándolo <code>upgrade1.sql</code>. De esta forma guardamos
+también los scripts de actualización en el control de versiones.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ cp upgrade.sql DIR_PROYECTO/sql/upgrade1.sql
+$ git commit -m &quot;Añadido fichero actualización BD&quot;
+$ git push
+</pre></div>
+</td></tr></table>
+
+<h4 id="confirmacion-del-pull-request">Confirmación del pull request<a class="headerlink" href="#confirmacion-del-pull-request" title="Permanent link">&para;</a></h4>
+<p>Por último confirmamos el pull request en GitHub y se hace la
+integración en <code>master</code> remoto. Borramos la rama remota
+<code>modelo-tablero</code>. </p>
+<p>Actualizamos la mezcla en local y borramos también la rama local:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ git checkout master
+$ git pull
+$ git branch -d modelo-tablero
+$ git remote prune origin
+</pre></div>
+</td></tr></table>
+
+<h3 id="43-resto-de-issues-parte-obligatoria">4.3. Resto de <em>issues</em> (parte obligatoria)<a class="headerlink" href="#43-resto-de-issues-parte-obligatoria" title="Permanent link">&para;</a></h3>
+<p>Termina los issues 2 y 3 de la historia de usuario, realizando el
+primero también con TDD:</p>
+<ol>
+<li>Métodos de servicio para crear un tablero y para obtener el listado
+   de tableros administrados por un usuario.</li>
+<li>Controlador, acción y vista para un listado de tableros
+   administrados y posibilidad de añadir nuevos tableros
+   administrados.</li>
+</ol>
+<h3 id="44-resto-de-issues-parte-opcional">4.4 Resto de <em>issues</em> (parte opcional)<a class="headerlink" href="#44-resto-de-issues-parte-opcional" title="Permanent link">&para;</a></h3>
+<p>Termina los issues 4, 5, 6 y 7, haciendo con TDD todos los
+correspondientes a métodos de servicio:</p>
+<ol>
+<li>Métodos de servicio para apuntarse a un tablero (como participante)
+   y para obtener los siguientes listados:</li>
+<li>Listado de tableros en los que participa el usuario</li>
+<li>Listado de resto de tableros (en los que el usuario ni participa ni es administrador).</li>
+<li>Controlador, acción y modificación de la vista con el listado de
+   tableros para mostrar los listados anteriores y permitir apuntarse
+   como participante a un tablero.</li>
+<li>Métodos de modelo y servicio para obtener descripción de un tablero
+   (nombre, administrador y lista de participantes).</li>
+<li>Controlador y vista con descripción de un tablero y añadir enlaces en el
+   listado de tableros para que al pinchar se vaya a su descripción.</li>
+</ol>
+<h3 id="45-finalizacion-de-la-version-02">4.5. Finalización de la versión 0.2<a class="headerlink" href="#45-finalizacion-de-la-version-02" title="Permanent link">&para;</a></h3>
+<p>Una vez terminada la práctica, creamos un nuevo <em>release</em>.</p>
+<ul>
+<li>
+<p>Cuando hayas integrado el último PR, haz un commit en master en el
+  que modifiques la versión del proyecto en el fichero build.sbt:</p>
+<p><code>version := "0.2"</code></p>
+</li>
+</ul>
+<p>Publica directamente el commit en master (sin hacer PR).</p>
+<ul>
+<li>
+<p>Añade en GitHub el tag con el número de versión:</p>
+<ul>
+<li>Pincha enlace <code>releases</code> en la página principal</li>
+<li>Añade una nueva versión: <code>v0.2</code> y pulsa el botón para publicar el
+  release. Esto creará la etiqueta y la versión en GitHub.</li>
+</ul>
+</li>
+<li>
+<p>Por último, cambia la versión actual (en <code>build.sbt</code> en <code>master</code>) a
+  <code>0.3-SNAPSHOT</code> haciendo y publicando un nuevo commit. De esta forma,
+  indicamos que ahora en master se está desarrollando la versión 0.3.</p>
+</li>
+</ul>
+<h2 id="5-entrega-y-evaluacion">5. Entrega y evaluación<a class="headerlink" href="#5-entrega-y-evaluacion" title="Permanent link">&para;</a></h2>
+<ul>
+<li>La práctica tiene una duración de 3 semanas y debe estar terminada
+  el martes 24 de octubre.</li>
+<li>La parte obligatoria puntúa sobre 7 y la opcional sobre 3 puntos.</li>
+<li>La calificación de la práctica tiene un peso de un 8% en la nota
+  final de la asignatura. </li>
+<li>Para realizar la entrega se debe subir a Moodle un ZIP que contenga
+  todo el proyecto, incluyendo la historia Git. Para ello comprime tu
+  directorio local del proyecto <strong>después de haber hecho un
+  <code>clean</code></strong>. Debes dejar también en Moodle la URL del repositorio en
+  GitHub.</li>
+</ul>
+<p>Para la evaluación se tendrá en cuenta:</p>
+<ul>
+<li>Desarrollo continuo (los <em>commits</em> deben realizarse a lo largo de
+  las 3 semanas y no dejar todo para la última semana).</li>
+<li>Correcto desarrollo de la metodología.</li>
+<li>Corrección del código.</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
